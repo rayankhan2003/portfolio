@@ -1,13 +1,23 @@
-import Header from "@/components/header"
-import Hero from "@/components/hero"
+import About from '@/components/about';
+import Header from '@/components/header';
+import Hero from '@/components/hero';
+import Projects from '@/components/projects';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main>
-        <Hero />
+      <main className="scroll-smooth">
+        <section id="home" className="min-h-screen flex items-center">
+          <Hero />
+        </section>
+        <section id="about" className="min-h-screen flex items-center">
+          <About />
+        </section>
+        <section id="projects" className="min-h-screen flex items-center">
+          <Projects />
+        </section>
       </main>
     </div>
-  )
+  );
 }

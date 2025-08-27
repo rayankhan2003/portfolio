@@ -3,7 +3,7 @@ import { Github, Linkedin, Download, Mail } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center min-h-screen px-4">
+    <section className="flex items-center justify-center max-w-6xl mx-auto min-h-screen px-4">
       <div className="max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-1 max-w-2xl">
@@ -278,7 +278,7 @@ export default function Hero() {
                       y2="89.1656"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="white" />
+                      <stop stopColor="white" />
                       <stop offset="1" stopColor="white" stopOpacity="0" />
                     </linearGradient>
                     <linearGradient
@@ -289,7 +289,7 @@ export default function Hero() {
                       y2="59.3741"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="white" />
+                      <stop stopColor="white" />
                       <stop offset="1" stopColor="white" stopOpacity="0" />
                     </linearGradient>
                   </defs>
