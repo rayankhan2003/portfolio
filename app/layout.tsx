@@ -6,6 +6,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Rayan Khan',
   description: 'Portfolio',
+  icons: {
+    icon: '/favicon_io/favicon.ico ',
+    shortcut: '/favicon_io/favicon-16x16.png',
+    apple: '/favicon_io/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
