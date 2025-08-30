@@ -40,10 +40,14 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4 mb-16">
-              <button className="flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors">
+              <a
+                target="_blank"
+                href="https://mail.google.com/mail/?view=cm&to=rayan4khan1@gmail.com"
+                className="flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+              >
                 <Mail className="w-4 h-4" />
                 Contact Me
-              </button>
+              </a>
               <button className="flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors">
                 <Download className="w-4 h-4" />
                 Download CV
