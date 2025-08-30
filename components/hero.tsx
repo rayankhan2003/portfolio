@@ -22,7 +22,7 @@ export default function Hero() {
 
             <div className="flex items-center gap-3 mb-8">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/rayankhanwebdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center"
@@ -30,7 +30,7 @@ export default function Hero() {
                 <Linkedin className="w-6 h-6 text-gray-900" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/rayankhan2003"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center"

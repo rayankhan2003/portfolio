@@ -9,7 +9,7 @@ export default function Footer() {
         </p>
         <div className="flex items-center gap-4">
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/rayankhanwebdev"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-300 transition-colors"
@@ -17,7 +17,7 @@ export default function Footer() {
             <Linkedin size={20} />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/rayankhan2003"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-300 transition-colors"
