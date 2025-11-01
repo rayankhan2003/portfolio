@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   --background: oklch(1 0 0);
@@ -73,10 +73,10 @@
 }
 
 @theme inline {
-  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -160,4 +160,16 @@
 }
 html {
   scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .grid-background {
+    background-image: linear-gradient(
+        to right,
+        theme("colors.gray.100") 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, theme("colors.gray.100") 1px, transparent 1px);
+    background-size: 2.5rem 2.5rem;
+  }
 }
