@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react"; // <-- install via: npm install lucide-react
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,8 +15,8 @@ export default function Header() {
 
   return (
     <header
-      className={`py-4 px-4 sm:px-6 lg:px-8  transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-transparent"
+      className={`py-4 px-4 sm:px-6 lg:px-8 transition-all duration-100 ${
+        isScrolled ? "bg-white" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center sm:pt-4 md:pt-0 justify-between">
