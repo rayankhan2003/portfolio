@@ -1,14 +1,14 @@
-import { ExternalLink, Github } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import Link from 'next/link';
+import { ExternalLink, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Projects() {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 space-y-4">
-          <h2 className="text-blue-600 font-semibold text-lg">PORTFOLIO</h2>
+          <h2 className="text-blue-600 font-semibold text-lg">My Work</h2>
           <h3 className="text-4xl font-bold text-gray-900">
             Each project is a unique piece of development 💸
           </h3>
@@ -45,7 +45,7 @@ export default function Projects() {
               <div className="flex justify-center mt-7 gap-4">
                 <Link
                   href={
-                    'https://github.com/rayankhan2003/react-projects/tree/main/omnifood'
+                    "https://github.com/rayankhan2003/react-projects/tree/main/omnifood"
                   }
                   target="_blank"
                 >
@@ -58,7 +58,7 @@ export default function Projects() {
                   </Button>
                 </Link>
                 <Link
-                  href={'https://omnifood-rayan.netlify.app/'}
+                  href={"https://omnifood-rayan.netlify.app/"}
                   target="_blank"
                 >
                   <Button className="flex items-center gap-2">
@@ -116,7 +116,7 @@ export default function Projects() {
 
                 <div className="flex justify-center mt-7 gap-4">
                   <Link
-                    href={'https://github.com/rayankhan2003/forkify-main'}
+                    href={"https://github.com/rayankhan2003/forkify-main"}
                     target="_blank"
                   >
                     <Button
@@ -128,7 +128,7 @@ export default function Projects() {
                     </Button>
                   </Link>
                   <Link
-                    href={'https://forkify-rayan.netlify.app/'}
+                    href={"https://forkify-rayan.netlify.app/"}
                     target="_blank"
                   >
                     <Button className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export default function Projects() {
               <div className="flex justify-center mt-7 gap-4">
                 <Link
                   href={
-                    'https://github.com/rayankhan2003/react-projects/tree/main/omnifood'
+                    "https://github.com/rayankhan2003/react-projects/tree/main/omnifood"
                   }
                   target="_blank"
                 >
@@ -180,7 +180,7 @@ export default function Projects() {
                   </Button>
                 </Link>
                 <Link
-                  href={'https://omnifood-rayan.netlify.app/'}
+                  href={"https://omnifood-rayan.netlify.app/"}
                   target="_blank"
                 >
                   <Button className="flex items-center gap-2">

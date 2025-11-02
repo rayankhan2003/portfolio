@@ -3,15 +3,15 @@ import { Github, Linkedin, Download, Mail } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center max-w-6xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <section className="flex items-center  justify-center max-w-6xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
       <div className="max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Left Content */}
           <div className="flex-1 max-w-2xl text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Full-Stack Web
+              <span>Full-Stack Web</span>
               <br className="hidden sm:block" />
-              Developer 👋🏻
+              <span> Developer 👋🏻</span>
             </h1>
 
             <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
@@ -279,7 +279,7 @@ export default function Hero() {
           </div>
 
           {/* Right Image */}
-          <div className="flex-shrink-0 mt-10 lg:mt-0">
+          <div className="flex-shrink-0 mt-10 lg:mt-0 self-center">
             <div className="w-[220px] sm:w-[280px] md:w-[320px] lg:w-[350px] aspect-square rounded-full overflow-hidden mx-auto lg:mx-0 shadow-lg">
               <Image
                 src="/images/profile.jpg"

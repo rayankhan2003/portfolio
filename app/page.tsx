@@ -6,14 +6,16 @@ import Projects from "@/components/projects";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <div className="grid-background">
+    <div className="w-full ">
+      <div className=" grid-background  sticky top-0 z-50 ">
         <Header />
-        <section id="home" className="min-h-screen flex items-center">
-          <Hero />
-        </section>
       </div>
       <main className="scroll-smooth">
+        <div className="grid-background">
+          <section id="home" className="min-h-screen flex items-center ">
+            <Hero />
+          </section>
+        </div>
         <section id="about" className="min-h-screen flex items-center">
           <About />
         </section>
