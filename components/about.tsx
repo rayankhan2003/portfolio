@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { MapPin } from 'lucide-react';
+import Image from "next/image";
+import { MapPin } from "lucide-react";
 
 export default function About() {
   return (
@@ -51,11 +51,11 @@ export default function About() {
         {/* Content */}
         <div className="space-y-6">
           <div className="space-y-2">
-            <p className="text-blue-500 font-bold text-sm tracking-wide uppercase">
+            <p className="text-gray-900 font-bold text-lg tracking-wide uppercase">
               About Me
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              A Creative Frontend Developer based in Peshawar, Pakistan{' '}
+              A Creative Frontend Developer based in Peshawar, Pakistan{" "}
               <MapPin className="inline-block w-8 h-8 text-red-500 ml-1" />
             </h1>
           </div>
