@@ -10,7 +10,7 @@ export default function Home() {
       <div className=" grid-background  sticky top-0 z-50 ">
         <Header />
       </div>
-      <main className="scroll-smooth">
+      <main className="scroll-smooth overflow-auto">
         <div className="grid-background">
           <section id="home" className="min-h-screen flex items-center ">
             <Hero />
