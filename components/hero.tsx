@@ -53,7 +53,8 @@ export default function Hero() {
               </a>
               <a
                 href="/rayan-cv.pdf"
-                download="Rayan_Khan_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm sm:text-base"
               >
                 <Download className="w-4 h-4" />
