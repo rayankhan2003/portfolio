@@ -51,10 +51,14 @@ export default function Hero() {
                 <Mail className="w-4 h-4" />
                 Contact Me
               </a>
-              <button className="flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm sm:text-base">
+              <a
+                href="/rayan-cv.pdf"
+                download="Rayan_Khan_CV.pdf"
+                className="flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm sm:text-base"
+              >
                 <Download className="w-4 h-4" />
                 Download CV
-              </button>
+              </a>
             </div>
 
             {/* Tech Stack */}

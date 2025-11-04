@@ -51,7 +51,7 @@ export default function About() {
         {/* Content */}
         <div className="space-y-6">
           <div className="space-y-2">
-            <p className="text-gray-900 font-bold text-lg tracking-wide uppercase">
+            <p className="text-gray-900 font-extrabold text-lg tracking-wide uppercase">
               About Me
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">

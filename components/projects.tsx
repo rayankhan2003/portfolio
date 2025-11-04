@@ -8,7 +8,7 @@ export default function Projects() {
     <section className="py-20 px-6 max-w-6xl mx-auto bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16 space-y-4">
-          <h2 className="text-gray-900 font-bold text-lg">My Projects</h2>
+          <h2 className="text-gray-900 font-extrabold text-lg">My Projects</h2>
           <h3 className="text-4xl font-bold text-gray-900">
             Each project is a unique piece of development 💸
           </h3>
