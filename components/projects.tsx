@@ -44,9 +44,7 @@ export default function Projects() {
 
               <div className="flex justify-center mt-7 gap-4">
                 <Link
-                  href={
-                    "https://github.com/rayankhan2003/react-projects/tree/main/omnifood"
-                  }
+                  href={"https://github.com/rayankhan2003/StayEase"}
                   target="_blank"
                 >
                   <Button
@@ -58,7 +56,7 @@ export default function Projects() {
                   </Button>
                 </Link>
                 <Link
-                  href={"https://omnifood-rayan.netlify.app/"}
+                  href={"https://stay-ease-rayan.vercel.app/"}
                   target="_blank"
                 >
                   <Button className="flex items-center gap-2">
