@@ -197,7 +197,7 @@ export default function Projects() {
             </div>
             <div className="relative">
               <Image
-                src="/images/omnifood.png"
+                src="/images/forkify.png"
                 alt="Car Rental Website Mockup"
                 width={600}
                 height={400}
