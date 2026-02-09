@@ -79,8 +79,8 @@ export default function Projects() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <Image
-                src="/images/forkify.png"
-                alt="Food Recipes Website Mockup"
+                src="/images/project-runner.png"
+                alt="Project runner Website Mockup"
                 width={600}
                 height={600}
                 className="w-full h-auto rounded-lg shadow-lg"
@@ -90,31 +90,38 @@ export default function Projects() {
             <div className="space-y-6">
               <div className="space-y-2 text-center">
                 <div className="flex justify-center items-center gap-2">
-                  <h4 className="text-lg font-bold text-gray-900">Forkify</h4>
-                  <span className="text-lg">😋😍</span>
+                  <h4 className="text-lg font-bold text-gray-900">
+                    Project Runner
+                  </h4>
+                  <span className="text-lg">🧱⚒️</span>
                 </div>
 
                 <p className="text-gray-700 text-lg leading-relaxed max-w-xs mx-auto">
-                  A recipe website that allows users to search and explore
-                  different meals. The website provides an interface for viewing
-                  ingredients, cooking steps, and bookmarking favorite recipes.
+                  Project Runner is an all-in-one construction site management
+                  platform designed to eliminate operational chaos and
+                  streamline day-to-day site coordination. Built specifically
+                  for builders and construction teams, the platform centralizes
+                  material requests, deliveries, and on-site workflows into a
+                  single, easy-to-use system.
                 </p>
 
                 <div className="flex justify-center gap-6 text-md font-bold">
                   <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">
-                    HTML
+                    React
                   </span>
                   <span className="px-4 py-2 bg-pink-100 text-pink-800 rounded-full font-medium">
-                    CSS
+                    Tailwind
                   </span>
                   <span className="px-4 py-2 bg-yellow-100 text-yellow-600 rounded-full font-medium">
-                    JS
+                    Js
                   </span>
                 </div>
 
                 <div className="flex justify-center mt-7 gap-4">
                   <Link
-                    href={"https://github.com/rayankhan2003/forkify-main"}
+                    href={
+                      "https://github.com/rayankhan2003/project-runner-landing"
+                    }
                     target="_blank"
                   >
                     <Button
@@ -126,7 +133,7 @@ export default function Projects() {
                     </Button>
                   </Link>
                   <Link
-                    href={"https://forkify-rayan.netlify.app/"}
+                    href={"https://project-runner-landing-seven.vercel.app/"}
                     target="_blank"
                   >
                     <Button className="flex items-center gap-2">
@@ -142,15 +149,14 @@ export default function Projects() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-center">
               <div className="flex items-center justify-center gap-2">
-                <h4 className="text-2xl font-bold text-gray-900">Omnifood</h4>
+                <h4 className="text-2xl font-bold text-gray-900">Forkify</h4>
                 <span className="text-2xl">🍕😋</span>
               </div>
 
               <p className="text-gray-700 text-lg leading-relaxed max-w-xs mx-auto">
-                A food subscription website that offers healthy, chef-prepared
-                meals delivered daily. The website provides an interface for
-                exploring meal plans, customizing preferences, and learning how
-                the service helps users eat well every day.
+                A recipe website that allows users to search and explore
+                different meals. The website provides an interface for viewing
+                ingredients, cooking steps, and bookmarking favorite recipes.
               </p>
 
               <div className="flex gap-4 items-center justify-center">
@@ -160,13 +166,14 @@ export default function Projects() {
                 <span className="px-4 py-2 bg-pink-100 text-pink-800 rounded-full font-medium">
                   CSS
                 </span>
+                <span className="px-4 py-2 bg-yellow-100 text-yellow-600 rounded-full font-medium">
+                  JS
+                </span>
               </div>
 
               <div className="flex justify-center mt-7 gap-4">
                 <Link
-                  href={
-                    "https://github.com/rayankhan2003/react-projects/tree/main/omnifood"
-                  }
+                  href={"https://github.com/rayankhan2003/forkify-main"}
                   target="_blank"
                 >
                   <Button
@@ -178,7 +185,7 @@ export default function Projects() {
                   </Button>
                 </Link>
                 <Link
-                  href={"https://omnifood-rayan.netlify.app/"}
+                  href={"https://forkify-rayan.netlify.app/"}
                   target="_blank"
                 >
                   <Button className="flex items-center gap-2">
