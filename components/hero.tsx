@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Github, Linkedin, Download, Mail } from "lucide-react";
+import Reveal from "@/components/reveal";
+import BlurText from "@/components/reactbits/blur-text";
 
 export default function Hero() {
   return (
@@ -8,28 +10,37 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Left Content */}
           <div className="flex-1 max-w-2xl text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              <span>Full-Stack Web</span>
-              <br className="hidden sm:block" />
-              <span> Developer 👋🏻</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+              <BlurText
+                text="Full-Stack Web Developer 👋🏻"
+                delay={120}
+                animateBy="words"
+                direction="top"
+                className="justify-center lg:justify-start"
+              />
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
-              Rayan Khan — Full-Stack Developer turning ideas into web
-              experiences.
-              <br />
-              Lifelong learner | Based in Peshawar, Pakistan 🇵🇰
-            </p>
+            <Reveal delay={0.1}>
+              <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
+                Rayan Khan — Full-Stack Developer turning ideas into web
+                experiences.
+                <br />
+                Lifelong learner | Based in Peshawar, Pakistan 🇵🇰
+              </p>
+            </Reveal>
 
             {/* Social Icons */}
-            <div className="flex justify-center lg:justify-start items-center gap-3 mb-8">
+            <Reveal
+              delay={0.2}
+              className="flex justify-center lg:justify-start items-center gap-3 mb-8"
+            >
               <a
                 href="https://linkedin.com/in/rayankhanwebdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <Linkedin className="w-6 h-6 text-gray-900" />
+                <Linkedin className="w-6 h-6 text-foreground" />
               </a>
               <a
                 href="https://github.com/rayankhan2003"
@@ -37,16 +48,19 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <Github className="w-6 h-6 text-gray-900" />
+                <Github className="w-6 h-6 text-foreground" />
               </a>
-            </div>
+            </Reveal>
 
             {/* Buttons */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-16">
+            <Reveal
+              delay={0.3}
+              className="flex flex-wrap justify-center lg:justify-start gap-4 mb-16"
+            >
               <a
                 target="_blank"
                 href="https://mail.google.com/mail/?view=cm&to=rayan4khan1@gmail.com"
-                className="flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm sm:text-base"
+                className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm sm:text-base"
               >
                 <Mail className="w-4 h-4" />
                 Contact Me
@@ -55,21 +69,24 @@ export default function Hero() {
                 href="/rayan-cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition-colors text-sm sm:text-base"
+                className="flex items-center gap-2 border-2 border-foreground text-foreground px-6 py-3 rounded-lg hover:bg-foreground hover:text-background transition-colors text-sm sm:text-base"
               >
                 <Download className="w-4 h-4" />
                 Download CV
               </a>
-            </div>
+            </Reveal>
 
             {/* Tech Stack */}
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+            <Reveal
+              delay={0.45}
+              className="flex flex-col lg:flex-row items-center lg:items-start gap-8"
+            >
               {/* Title + Divider */}
               <div className="flex items-center gap-4 mt-1">
-                <span className="whitespace-nowrap text-base sm:text-lg font-medium text-gray-700">
+                <span className="whitespace-nowrap text-base sm:text-lg font-medium text-muted-foreground">
                   ⚡ Tech I work with
                 </span>
-                <div className="hidden sm:block w-px h-6 bg-gray-400"></div>
+                <div className="hidden sm:block w-px h-6 bg-border"></div>
               </div>
 
               {/* Icons */}
@@ -195,7 +212,7 @@ export default function Hero() {
                 </svg>{" "}
                 {/* Next.js */}{" "}
                 <svg
-                  className="w-8 h-8"
+                  className="w-8 h-8 dark:invert"
                   viewBox="0 0 100 100"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +260,7 @@ export default function Hero() {
                 </svg>{" "}
                 {/* shad cn */}{" "}
                 <svg
-                  className="w-8 h-8"
+                  className="w-8 h-8 dark:invert"
                   viewBox="0 0 100 100"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -280,11 +297,11 @@ export default function Hero() {
                   </defs>{" "}
                 </svg>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           {/* Right Image */}
-          <div className="flex-shrink-0 mt-10 lg:mt-0 self-center">
+          <Reveal delay={0.2} className="flex-shrink-0 mt-10 lg:mt-0 self-center">
             <div className="w-[220px] sm:w-[280px] md:w-[320px] lg:w-[350px] aspect-square rounded-full overflow-hidden mx-auto lg:mx-0 shadow-lg">
               <Image
                 src="/images/profile.jpg"
@@ -295,7 +312,7 @@ export default function Hero() {
                 priority
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

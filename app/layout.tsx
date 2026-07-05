@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rayan Khan",
-  description: "Portfolio",
+  metadataBase: new URL("https://rayankhan.dev"),
+  title: "Rayan Khan — Full-Stack Web Developer",
+  description:
+    "Portfolio of Rayan Khan, a full-stack developer from Peshawar, Pakistan building modern web experiences with React, Next.js, and Node.js.",
+  openGraph: {
+    title: "Rayan Khan — Full-Stack Web Developer",
+    description:
+      "Full-stack developer building modern web experiences with React, Next.js, and Node.js.",
+    url: "https://rayankhan.dev",
+    siteName: "rayankhan.dev",
+    images: ["/images/profile.jpg"],
+    type: "website",
+  },
   icons: {
-    icon: "/favicon_io/favicon.ico ",
+    icon: "/favicon_io/favicon.ico",
     shortcut: "/favicon_io/favicon-16x16.png",
     apple: "/favicon_io/apple-touch-icon.png",
   },
@@ -19,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <style>{`
 html {
@@ -29,7 +41,16 @@ html {
 }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
