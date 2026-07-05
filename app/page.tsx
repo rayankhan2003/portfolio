@@ -3,7 +3,9 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import HeroBackground from "@/components/hero-background";
+import Skills from "@/components/skills";
 import Projects from "@/components/projects";
+import Contact from "@/components/contact";
 
 export default function Home() {
   return (
@@ -27,8 +29,14 @@ export default function Home() {
         <section id="about" className="min-h-screen flex items-center">
           <About />
         </section>
+        <section id="skills" className="flex items-center">
+          <Skills />
+        </section>
         <section id="projects" className="min-h-screen flex items-center">
           <Projects />
+        </section>
+        <section id="contact" className="flex items-center">
+          <Contact />
         </section>
         <Footer />
       </main>

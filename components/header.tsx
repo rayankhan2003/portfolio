@@ -2,19 +2,27 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import ThemeToggle from "@/components/theme-toggle";
 
 const NAV_ITEMS = [
   { href: "#home", id: "home", label: "Home" },
   { href: "#about", id: "about", label: "About" },
+  { href: "#skills", id: "skills", label: "Skills" },
   { href: "#projects", id: "projects", label: "Projects" },
+  { href: "#contact", id: "contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 40,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -40,7 +48,7 @@ export default function Header() {
 
   return (
     <header
-      className={`py-4 px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+      className={`relative py-4 px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-md shadow-sm"
           : "bg-transparent"
@@ -115,6 +123,11 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary origin-left"
+        style={{ scaleX }}
+      />
     </header>
   );
 }
