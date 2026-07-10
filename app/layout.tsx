@@ -7,11 +7,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rayankhan.dev"),
-  title: "Rayan Khan — Full-Stack Web Developer",
+  title: "Rayan Khan, Full-Stack Web Developer",
   description:
     "Portfolio of Rayan Khan, a full-stack developer from Peshawar, Pakistan building modern web experiences with React, Next.js, and Node.js.",
   openGraph: {
-    title: "Rayan Khan — Full-Stack Web Developer",
+    title: "Rayan Khan, Full-Stack Web Developer",
     description:
       "Full-stack developer building modern web experiences with React, Next.js, and Node.js.",
     url: "https://rayankhan.dev",

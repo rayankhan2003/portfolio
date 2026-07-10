@@ -1,8 +1,16 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowSquareOut, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
+
+function TechTag({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full font-medium text-sm">
+      {children}
+    </span>
+  );
+}
 
 export default function Projects() {
   return (
@@ -13,17 +21,14 @@ export default function Projects() {
             My Projects
           </p>
           <h2 className="text-4xl font-bold text-foreground">
-            Each project is a unique piece of development 💸
+            Each project is a unique piece of development
           </h2>
         </Reveal>
 
         <div className="space-y-20">
           <Reveal className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-center">
-              <div className="flex items-center justify-center gap-2">
-                <h4 className="text-2xl font-bold text-foreground">StayEase</h4>
-                <span className="text-2xl">🏨</span>
-              </div>
+              <h3 className="text-2xl font-bold text-foreground">StayEase</h3>
 
               <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">
                 A hotel management system that delivers seamless room bookings,
@@ -34,15 +39,9 @@ export default function Projects() {
               </p>
 
               <div className="flex gap-4 items-center justify-center">
-                <span className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full font-medium">
-                  NextJs
-                </span>
-                <span className="px-4 py-2 bg-blue-100 text-blue-500 dark:bg-blue-950 dark:text-blue-300 rounded-full font-medium">
-                  tailwindCSS
-                </span>
-                <span className="px-4 py-2 bg-orange-100 text-orange-500 dark:bg-orange-950 dark:text-orange-300 rounded-full font-medium">
-                  SupaBase
-                </span>
+                <TechTag>Next.js</TechTag>
+                <TechTag>Tailwind CSS</TechTag>
+                <TechTag>Supabase</TechTag>
               </div>
 
               <div className="flex justify-center mt-7 gap-4">
@@ -55,7 +54,7 @@ export default function Projects() {
                     className="flex items-center gap-2 bg-transparent"
                   >
                     <span>Code</span>
-                    <Github className="w-4 h-4" />
+                    <GithubLogo weight="light" className="w-4 h-4" />
                   </Button>
                 </Link>
                 <Link
@@ -64,12 +63,12 @@ export default function Projects() {
                 >
                   <Button className="flex items-center gap-2">
                     <span>Live Demo</span>
-                    <ExternalLink className="w-4 h-4" />
+                    <ArrowSquareOut weight="light" className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
             </div>
-            <div className="relative group overflow-hidden rounded-lg shadow-lg">
+            <div className="relative group overflow-hidden rounded-lg shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.25)]">
               <Image
                 src="/images/stayease.webp"
                 alt="StayEase hotel management system screenshot"
@@ -79,8 +78,9 @@ export default function Projects() {
               />
             </div>
           </Reveal>
+
           <Reveal className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative group overflow-hidden rounded-lg shadow-lg">
+            <div className="relative group overflow-hidden rounded-lg shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.25)] lg:order-2">
               <Image
                 src="/images/project-runner.webp"
                 alt="Project runner Website Mockup"
@@ -90,14 +90,11 @@ export default function Projects() {
               />
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 lg:order-1">
               <div className="space-y-2 text-center">
-                <div className="flex justify-center items-center gap-2">
-                  <h4 className="text-lg font-bold text-foreground">
-                    Project Runner
-                  </h4>
-                  <span className="text-lg">🧱⚒️</span>
-                </div>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Project Runner
+                </h3>
 
                 <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">
                   Project Runner is an all-in-one construction site management
@@ -108,16 +105,10 @@ export default function Projects() {
                   single, easy-to-use system.
                 </p>
 
-                <div className="flex justify-center gap-6 text-md font-bold">
-                  <span className="px-4 py-2 bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 rounded-full font-medium">
-                    React
-                  </span>
-                  <span className="px-4 py-2 bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-300 rounded-full font-medium">
-                    Tailwind
-                  </span>
-                  <span className="px-4 py-2 bg-yellow-100 text-yellow-600 dark:bg-yellow-950 dark:text-yellow-300 rounded-full font-medium">
-                    Js
-                  </span>
+                <div className="flex justify-center gap-4">
+                  <TechTag>React</TechTag>
+                  <TechTag>Tailwind CSS</TechTag>
+                  <TechTag>JavaScript</TechTag>
                 </div>
 
                 <div className="flex justify-center mt-7 gap-4">
@@ -132,7 +123,7 @@ export default function Projects() {
                       className="flex items-center gap-2 bg-transparent"
                     >
                       <span>Code</span>
-                      <Github className="w-4 h-4" />
+                      <GithubLogo weight="light" className="w-4 h-4" />
                     </Button>
                   </Link>
                   <Link
@@ -141,7 +132,7 @@ export default function Projects() {
                   >
                     <Button className="flex items-center gap-2">
                       <span>Live Demo</span>
-                      <ExternalLink className="w-4 h-4" />
+                      <ArrowSquareOut weight="light" className="w-4 h-4" />
                     </Button>
                   </Link>
                 </div>
@@ -149,63 +140,58 @@ export default function Projects() {
             </div>
           </Reveal>
 
-          <Reveal className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-center">
-              <div className="flex items-center justify-center gap-2">
-                <h4 className="text-2xl font-bold text-foreground">Forkify</h4>
-                <span className="text-2xl">🍕😋</span>
+          <Reveal>
+            <div className="rounded-2xl bg-card shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.15)] p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-8">
+              <div className="relative shrink-0 w-full sm:w-48 aspect-square overflow-hidden rounded-xl group">
+                <Image
+                  src="/images/forkify.webp"
+                  alt="Forkify recipe website screenshot"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
 
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">
-                A recipe website that allows users to search and explore
-                different meals. The website provides an interface for viewing
-                ingredients, cooking steps, and bookmarking favorite recipes.
-              </p>
+              <div className="flex-1 text-center sm:text-left space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Forkify</h3>
 
-              <div className="flex gap-4 items-center justify-center">
-                <span className="px-4 py-2 bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 rounded-full font-medium">
-                  HTML
-                </span>
-                <span className="px-4 py-2 bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-300 rounded-full font-medium">
-                  CSS
-                </span>
-                <span className="px-4 py-2 bg-yellow-100 text-yellow-600 dark:bg-yellow-950 dark:text-yellow-300 rounded-full font-medium">
-                  JS
-                </span>
-              </div>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  A recipe website that allows users to search and explore
+                  different meals. The website provides an interface for
+                  viewing ingredients, cooking steps, and bookmarking favorite
+                  recipes.
+                </p>
 
-              <div className="flex justify-center mt-7 gap-4">
-                <Link
-                  href={"https://github.com/rayankhan2003/forkify-main"}
-                  target="_blank"
-                >
-                  <Button
-                    variant="outline"
-                    className="flex items-center gap-2 bg-transparent"
+                <div className="flex gap-4 items-center justify-center sm:justify-start flex-wrap">
+                  <TechTag>HTML</TechTag>
+                  <TechTag>CSS</TechTag>
+                  <TechTag>JavaScript</TechTag>
+                </div>
+
+                <div className="flex justify-center sm:justify-start gap-4 pt-1">
+                  <Link
+                    href={"https://github.com/rayankhan2003/forkify-main"}
+                    target="_blank"
                   >
-                    <span>Code</span>
-                    <Github className="w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link
-                  href={"https://forkify-rayan.netlify.app/"}
-                  target="_blank"
-                >
-                  <Button className="flex items-center gap-2">
-                    <span>Live Demo</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
-                </Link>
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2 bg-transparent"
+                    >
+                      <span>Code</span>
+                      <GithubLogo weight="light" className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                  <Link
+                    href={"https://forkify-rayan.netlify.app/"}
+                    target="_blank"
+                  >
+                    <Button className="flex items-center gap-2">
+                      <span>Live Demo</span>
+                      <ArrowSquareOut weight="light" className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="relative group overflow-hidden rounded-lg shadow-lg">
-              <Image
-                src="/images/forkify.webp"
-                alt="Forkify recipe website screenshot"
-                width={600}
-                height={400}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-              />
             </div>
           </Reveal>
         </div>

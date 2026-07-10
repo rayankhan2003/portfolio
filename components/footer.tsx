@@ -1,28 +1,30 @@
-import { Github, Linkedin } from 'lucide-react';
+import { GithubLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 
 export default function Footer() {
   return (
-    <footer className="bg-black/90 backdrop-blur-sm text-gray-300 text-center py-4 px-6">
+    <footer className="border-t border-border bg-background text-foreground text-center py-6 px-6">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        <p className="text-md font-semibold">
+        <p className="text-sm text-muted-foreground">
           Copyright ©{new Date().getFullYear()} All rights are reserved
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <a
             href="https://www.linkedin.com/in/rayankhanwebdev"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            aria-label="LinkedIn profile"
+            className="w-11 h-11 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Linkedin size={20} />
+            <LinkedinLogo weight="light" size={20} />
           </a>
           <a
             href="https://github.com/rayankhan2003"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition-colors"
+            aria-label="GitHub profile"
+            className="w-11 h-11 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Github size={20} />
+            <GithubLogo weight="light" size={20} />
           </a>
         </div>
       </div>

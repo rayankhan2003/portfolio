@@ -21,18 +21,18 @@ export default function Home() {
           </div>
           <section
             id="home"
-            className="relative min-h-screen flex items-center"
+            className="relative min-h-[100dvh] flex items-center"
           >
             <Hero />
           </section>
         </div>
-        <section id="about" className="min-h-screen flex items-center">
+        <section id="about" className="min-h-[100dvh] flex items-center">
           <About />
         </section>
         <section id="skills" className="flex items-center">
           <Skills />
         </section>
-        <section id="projects" className="min-h-screen flex items-center">
+        <section id="projects" className="min-h-[100dvh] flex items-center">
           <Projects />
         </section>
         <section id="contact" className="flex items-center">

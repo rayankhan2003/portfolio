@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "@phosphor-icons/react/dist/ssr";
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -16,9 +16,9 @@ export default function ThemeToggle() {
       className="p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
     >
       {mounted && resolvedTheme === "dark" ? (
-        <Sun size={20} />
+        <Sun weight="light" size={20} />
       ) : (
-        <Moon size={20} />
+        <Moon weight="light" size={20} />
       )}
     </button>
   );

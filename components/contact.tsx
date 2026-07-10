@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { CircleNotch, PaperPlaneTilt, CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -69,7 +69,7 @@ export default function Contact() {
       <Reveal delay={0.15}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 rounded-2xl border border-border bg-card p-8"
+          className="space-y-6 rounded-2xl bg-card p-8 shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.15)]"
         >
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
@@ -115,17 +115,17 @@ export default function Contact() {
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <CircleNotch weight="bold" className="w-4 h-4 animate-spin" />
                 Sending...
               </>
             ) : status === "success" ? (
               <>
-                <CheckCircle2 className="w-4 h-4" />
+                <CheckCircle weight="light" className="w-4 h-4" />
                 Sent!
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
+                <PaperPlaneTilt weight="light" className="w-4 h-4" />
                 Send Message
               </>
             )}

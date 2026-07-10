@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import Reveal from "@/components/reveal";
 
 export default function About() {
@@ -8,7 +8,7 @@ export default function About() {
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         {/* Hero Image with Badge */}
         <Reveal x={-24} className="relative">
-          <div className="group relative rounded-2xl overflow-hidden shadow-2xl">
+          <div className="group relative rounded-2xl overflow-hidden shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.3)]">
             <Image
               src="/images/workspace.jpg"
               alt="Developer workspace with laptop, tablet, and coffee"
@@ -19,7 +19,7 @@ export default function About() {
           </div>
 
           {/* Circular Badge */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-background rounded-full shadow-lg flex items-center justify-center border-4 border-background">
+          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-background rounded-full shadow-[0_8px_24px_-6px_oklch(0.551_0.169_46_/_0.3)] flex items-center justify-center border-4 border-background">
             <div className="relative w-30 h-30">
               {/* Circular Text */}
               <svg
@@ -41,8 +41,10 @@ export default function About() {
 
               {/* Center Avatar */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                  <span className="text-white  text-5xl">👨‍💻</span>
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                  <span className="text-primary-foreground text-sm font-bold tracking-tight">
+                    RK
+                  </span>
                 </div>
               </div>
             </div>
@@ -52,16 +54,16 @@ export default function About() {
         {/* Content */}
         <Reveal x={24} delay={0.15} className="space-y-6">
           <div className="space-y-2">
-            <p className="text-primary font-extrabold text-lg tracking-wide uppercase">
-              About Me
-            </p>
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
               A Creative Frontend Developer based in Peshawar, Pakistan{" "}
-              <MapPin className="inline-block w-8 h-8 text-red-500 ml-1" />
+              <MapPin
+                weight="light"
+                className="inline-block w-8 h-8 text-primary ml-1"
+              />
             </h2>
           </div>
 
-          <p className="text-muted-foreground text-lg leading-relaxed text-justify">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             I’m Rayan Khan, a Full-Stack Developer who enjoys working across
             both the front-end and back-end of modern web applications. On the
             front-end, I focus on creating clean, responsive interfaces with

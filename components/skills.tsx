@@ -20,6 +20,7 @@ import {
 const SKILL_GROUPS = [
   {
     title: "Frontend",
+    span: "md:col-span-2",
     icons: [
       { Icon: HtmlIcon, name: "HTML" },
       { Icon: CssIcon, name: "CSS" },
@@ -32,6 +33,7 @@ const SKILL_GROUPS = [
   },
   {
     title: "Backend",
+    span: "md:col-span-1",
     icons: [
       { Icon: PythonIcon, name: "Python" },
       { Icon: FlaskIcon, name: "Flask" },
@@ -42,6 +44,7 @@ const SKILL_GROUPS = [
   },
   {
     title: "Tools & Version Control",
+    span: "md:col-span-3",
     icons: [
       { Icon: GitHubIcon, name: "GitHub", invert: true },
       { Icon: GitLabIcon, name: "GitLab" },
@@ -52,23 +55,20 @@ const SKILL_GROUPS = [
 const STATS = [
   { to: 3, suffix: "+", label: "Projects Shipped" },
   { to: 2, suffix: "+", label: "Years Learning & Building" },
-  { to: 100, suffix: "%", label: "Full-Stack" },
+  { to: 14, suffix: "+", label: "Tools & Technologies" },
 ];
 
 export default function Skills() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
       <Reveal className="mb-16 space-y-4 text-center lg:text-left">
-        <p className="text-primary font-extrabold text-lg tracking-wide uppercase">
-          What I Bring
-        </p>
         <h2 className="text-4xl font-bold text-foreground">Skills & Stack</h2>
       </Reveal>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <div className="grid md:grid-cols-3 gap-8 mb-16">
         {SKILL_GROUPS.map((group, i) => (
-          <Reveal key={group.title} delay={i * 0.1}>
-            <div className="rounded-2xl border border-border bg-card p-8 h-full">
+          <Reveal key={group.title} delay={i * 0.1} className={group.span}>
+            <div className="rounded-2xl bg-card p-8 h-full shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.12)]">
               <h3 className="text-lg font-bold text-foreground mb-6">
                 {group.title}
               </h3>
@@ -91,7 +91,7 @@ export default function Skills() {
       </div>
 
       <Reveal delay={0.2}>
-        <div className="grid grid-cols-3 gap-4 rounded-2xl border border-border bg-card py-8 px-4">
+        <div className="grid grid-cols-3 gap-4 rounded-2xl bg-card py-8 px-4 shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.12)]">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
               <Counter

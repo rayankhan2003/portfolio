@@ -1,24 +1,19 @@
 "use client";
 import Image from "next/image";
-import { Github, Linkedin, Download, Mail } from "lucide-react";
+import {
+  GithubLogo,
+  LinkedinLogo,
+  DownloadSimple,
+  EnvelopeSimple,
+} from "@phosphor-icons/react/dist/ssr";
 import { motion } from "motion/react";
 import Reveal from "@/components/reveal";
 import BlurText from "@/components/reactbits/blur-text";
 import TextType from "@/components/reactbits/text-type";
-import {
-  HtmlIcon,
-  CssIcon,
-  JavaScriptIcon,
-  ReactIcon,
-  TailwindIcon,
-  MongoDbIcon,
-  NextJsIcon,
-  ShadcnIcon,
-} from "@/components/tech-icons";
 
 export default function Hero() {
   return (
-    <section className="flex items-center  justify-center max-w-6xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <section className="flex items-center  justify-center max-w-6xl mx-auto min-h-[100dvh] px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
       <div className="max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Left Content */}
@@ -51,10 +46,10 @@ export default function Hero() {
 
             <Reveal delay={0.1}>
               <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
-                Rayan Khan — Full-Stack Developer turning ideas into web
+                Rayan Khan, Full-Stack Developer turning ideas into web
                 experiences.
                 <br />
-                Lifelong learner | Based in Peshawar, Pakistan 🇵🇰
+                Lifelong learner, based in Peshawar, Pakistan.
               </p>
             </Reveal>
 
@@ -67,17 +62,19 @@ export default function Hero() {
                 href="https://linkedin.com/in/rayankhanwebdev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform"
+                aria-label="LinkedIn profile"
+                className="w-11 h-11 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <Linkedin className="w-6 h-6 text-foreground" />
+                <LinkedinLogo weight="light" className="w-6 h-6 text-foreground" />
               </a>
               <a
                 href="https://github.com/rayankhan2003"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform"
+                aria-label="GitHub profile"
+                className="w-11 h-11 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <Github className="w-6 h-6 text-foreground" />
+                <GithubLogo weight="light" className="w-6 h-6 text-foreground" />
               </a>
             </Reveal>
 
@@ -91,7 +88,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.96 }}
                 className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm sm:text-base"
               >
-                <Mail className="w-4 h-4" />
+                <EnvelopeSimple weight="light" className="w-4 h-4" />
                 Contact Me
               </motion.a>
               <motion.a
@@ -101,41 +98,15 @@ export default function Hero() {
                 whileTap={{ scale: 0.96 }}
                 className="flex items-center gap-2 border-2 border-foreground text-foreground px-6 py-3 rounded-lg hover:bg-foreground hover:text-background transition-colors text-sm sm:text-base"
               >
-                <Download className="w-4 h-4" />
+                <DownloadSimple weight="light" className="w-4 h-4" />
                 Download CV
               </motion.a>
-            </Reveal>
-
-            {/* Tech Stack */}
-            <Reveal
-              delay={0.45}
-              className="flex flex-col lg:flex-row items-center lg:items-start gap-8"
-            >
-              {/* Title + Divider */}
-              <div className="flex items-center gap-4 mt-1">
-                <span className="whitespace-nowrap text-base sm:text-lg font-medium text-muted-foreground">
-                  ⚡ Tech I work with
-                </span>
-                <div className="hidden sm:block w-px h-6 bg-border"></div>
-              </div>
-
-              {/* Icons */}
-              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 sm:gap-10">
-                <HtmlIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-                <CssIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-                <JavaScriptIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-                <ReactIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-                <TailwindIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-                <MongoDbIcon className="w-8 h-8" />
-                <NextJsIcon className="w-8 h-8 dark:invert" />
-                <ShadcnIcon className="w-8 h-8 dark:invert" />
-              </div>
             </Reveal>
           </div>
 
           {/* Right Image */}
           <Reveal delay={0.2} className="flex-shrink-0 mt-10 lg:mt-0 self-center">
-            <div className="w-[220px] sm:w-[280px] md:w-[320px] lg:w-[350px] aspect-square rounded-full overflow-hidden mx-auto lg:mx-0 shadow-lg">
+            <div className="w-[220px] sm:w-[280px] md:w-[320px] lg:w-[350px] aspect-square rounded-full overflow-hidden mx-auto lg:mx-0 shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.35)]">
               <Image
                 src="/images/profile.jpg"
                 alt="Rayan Khan"

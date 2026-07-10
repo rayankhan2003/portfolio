@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { List, X } from "@phosphor-icons/react/dist/ssr";
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -93,7 +93,11 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? (
+              <X weight="light" size={24} />
+            ) : (
+              <List weight="light" size={24} />
+            )}
           </button>
         </div>
       </div>
