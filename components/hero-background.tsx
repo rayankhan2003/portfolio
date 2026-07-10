@@ -20,8 +20,8 @@ export default function HeroBackground() {
         speed={0.3}
         squareSize={40}
         borderColor={isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)"}
-        hoverFillColor={isDark ? "rgba(129,140,248,0.4)" : "rgba(99,102,241,0.2)"}
-        vignetteColor={isDark ? "#0a0a0a" : "#ffffff"}
+        hoverFillColor={isDark ? "rgba(245,158,91,0.35)" : "rgba(194,102,26,0.18)"}
+        vignetteColor={isDark ? "#141210" : "#ffffff"}
       />
     </div>
   );

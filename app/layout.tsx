@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GeistPixelSquare } from "geist/font/pixel";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -32,17 +33,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}
+    >
       <head>
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
+  --font-sans: ${GeistSans.style.fontFamily};
+  --font-mono: ${GeistMono.style.fontFamily};
+  --font-pixel: ${GeistPixelSquare.style.fontFamily};
 }
         `}</style>
       </head>
-      <body>
+      <body className="scanlines grain">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

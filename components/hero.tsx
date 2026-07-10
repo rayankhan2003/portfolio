@@ -8,114 +8,137 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { motion } from "motion/react";
 import Reveal from "@/components/reveal";
-import BlurText from "@/components/reactbits/blur-text";
 import TextType from "@/components/reactbits/text-type";
+import TerminalWindow from "@/components/terminal-window";
+
+const SOCIALS = [
+  {
+    href: "https://github.com/rayankhan2003",
+    label: "GitHub profile",
+    Icon: GithubLogo,
+  },
+  {
+    href: "https://linkedin.com/in/rayankhanwebdev",
+    label: "LinkedIn profile",
+    Icon: LinkedinLogo,
+  },
+];
 
 export default function Hero() {
   return (
-    <section className="flex items-center  justify-center max-w-6xl mx-auto min-h-[100dvh] px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <section className="flex items-center justify-center max-w-6xl mx-auto min-h-[100dvh] px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
       <div className="max-w-6xl w-full">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          {/* Left Content */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          {/* Left: the terminal session */}
           <div className="flex-1 max-w-2xl text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-3">
-                <BlurText
-                  text="Full-Stack Web"
-                  delay={120}
-                  animateBy="words"
-                  direction="top"
-                />
+            <p className="font-mono text-sm sm:text-base mb-5 text-muted-foreground">
+              <span className="text-primary">rayan@portfolio</span>
+              <span>:~ $ </span>
+              <TextType
+                as="span"
+                text="whoami"
+                typingSpeed={90}
+                initialDelay={400}
+                loop={false}
+                showCursor={false}
+                className="text-foreground"
+              />
+            </p>
+
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.1 }}
+              className="font-pixel text-[3.4rem] sm:text-7xl lg:text-8xl leading-[0.95] text-foreground mb-6 select-none"
+            >
+              RAYAN
+              <br />
+              <span className="caret-block">KHAN</span>
+            </motion.h1>
+
+            <Reveal delay={1.25}>
+              <div className="font-mono text-lg sm:text-xl mb-6">
+                <span className="text-primary">›</span>{" "}
                 <TextType
                   as="span"
                   text={[
-                    "Developer",
-                    "Engineer",
-                    "Problem Solver",
-                    "Coffee Enjoyer",
+                    "full-stack developer",
+                    "react + next.js",
+                    "node.js backends",
+                    "coffee-driven",
                   ]}
-                  className="text-primary"
-                  typingSpeed={80}
-                  deletingSpeed={40}
+                  typingSpeed={70}
+                  deletingSpeed={35}
+                  initialDelay={1500}
                   pauseDuration={1800}
-                  cursorCharacter="|"
+                  cursorCharacter="▌"
                   cursorClassName="text-primary"
                 />
               </div>
-            </h1>
+            </Reveal>
 
-            <Reveal delay={0.1}>
+            <Reveal delay={1.4}>
               <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
-                Rayan Khan, Full-Stack Developer turning ideas into web
-                experiences.
-                <br />
-                Lifelong learner, based in Peshawar, Pakistan.
+                I turn ideas into fast, reliable web apps — from database to
+                pixel-perfect UI. Based in Peshawar, Pakistan.
               </p>
             </Reveal>
 
-            {/* Social Icons */}
             <Reveal
-              delay={0.2}
-              className="flex justify-center lg:justify-start items-center gap-3 mb-8"
-            >
-              <a
-                href="https://linkedin.com/in/rayankhanwebdev"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                className="w-11 h-11 flex items-center justify-center hover:scale-110 transition-transform"
-              >
-                <LinkedinLogo weight="light" className="w-6 h-6 text-foreground" />
-              </a>
-              <a
-                href="https://github.com/rayankhan2003"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                className="w-11 h-11 flex items-center justify-center hover:scale-110 transition-transform"
-              >
-                <GithubLogo weight="light" className="w-6 h-6 text-foreground" />
-              </a>
-            </Reveal>
-
-            {/* Buttons */}
-            <Reveal
-              delay={0.3}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 mb-16"
+              delay={1.5}
+              className="flex flex-wrap justify-center lg:justify-start items-center gap-4"
             >
               <motion.a
                 href="#contact"
                 whileTap={{ scale: 0.96 }}
-                className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm sm:text-base"
+                className="flex items-center gap-2 bg-primary text-primary-foreground font-mono text-sm sm:text-base px-6 py-3 rounded-md hover:bg-primary/90 transition-colors"
               >
                 <EnvelopeSimple weight="light" className="w-4 h-4" />
-                Contact Me
+                Contact me
               </motion.a>
               <motion.a
                 href="/rayan-cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileTap={{ scale: 0.96 }}
-                className="flex items-center gap-2 border-2 border-foreground text-foreground px-6 py-3 rounded-lg hover:bg-foreground hover:text-background transition-colors text-sm sm:text-base"
+                className="flex items-center gap-2 border border-border text-foreground font-mono text-sm sm:text-base px-6 py-3 rounded-md hover:border-primary hover:text-primary transition-colors"
               >
                 <DownloadSimple weight="light" className="w-4 h-4" />
                 Download CV
               </motion.a>
+
+              <span className="flex items-center gap-2 ml-1">
+                {SOCIALS.map(({ href, label, Icon }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-11 h-11 flex items-center justify-center rounded-md border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <Icon weight="light" className="w-5 h-5" />
+                  </a>
+                ))}
+              </span>
             </Reveal>
           </div>
 
-          {/* Right Image */}
-          <Reveal delay={0.2} className="flex-shrink-0 mt-10 lg:mt-0 self-center">
-            <div className="w-[220px] sm:w-[280px] md:w-[320px] lg:w-[350px] aspect-square rounded-full overflow-hidden mx-auto lg:mx-0 shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.35)]">
+          {/* Right: profile.jpg viewed in a window */}
+          <Reveal delay={0.3} className="flex-shrink-0 mt-6 lg:mt-0">
+            <TerminalWindow
+              title="~/images/profile.jpg"
+              className="w-[260px] sm:w-[300px] md:w-[340px]"
+            >
               <Image
                 src="/images/profile.jpg"
                 alt="Rayan Khan"
-                width={350}
-                height={350}
-                className="w-full h-full object-cover object-center"
+                width={340}
+                height={340}
+                className="aspect-square w-full object-cover object-center"
                 priority
               />
-            </div>
+            </TerminalWindow>
           </Reveal>
         </div>
       </div>

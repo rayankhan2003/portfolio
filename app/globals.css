@@ -40,25 +40,25 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.74 0.15 55);
+  --background: oklch(0.155 0.008 75);
+  --foreground: oklch(0.94 0.01 85);
+  --card: oklch(0.185 0.01 75);
+  --card-foreground: oklch(0.94 0.01 85);
+  --popover: oklch(0.185 0.01 75);
+  --popover-foreground: oklch(0.94 0.01 85);
+  --primary: oklch(0.76 0.16 60);
   --primary-foreground: oklch(0.18 0.03 46);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.24 0.012 75);
+  --secondary-foreground: oklch(0.94 0.01 85);
+  --muted: oklch(0.24 0.012 75);
+  --muted-foreground: oklch(0.68 0.02 80);
+  --accent: oklch(0.24 0.012 75);
+  --accent-foreground: oklch(0.94 0.01 85);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --border: oklch(0.28 0.015 75);
+  --input: oklch(0.28 0.015 75);
+  --ring: oklch(0.76 0.16 60);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -75,8 +75,9 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-pixel: var(--font-pixel);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -175,4 +176,61 @@ section[id] {
 
 .animate-caret-blink {
   animation: caret-blink 1.2s ease-out infinite;
+}
+
+/* ---------- terminal theme ---------- */
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* full-page CRT scanlines — barely-there texture, not a costume */
+.scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgb(0 0 0 / 0.015) 3px,
+    rgb(0 0 0 / 0.015) 4px
+  );
+}
+
+.dark .scanlines::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgb(0 0 0 / 0.12) 3px,
+    rgb(0 0 0 / 0.12) 4px
+  );
+}
+
+/* film grain via inline SVG turbulence */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* blinking block cursor, e.g. after headings */
+.caret-block::after {
+  content: "▌";
+  color: var(--primary);
+  animation: caret-blink 1.2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret-block::after {
+    animation: none;
+  }
 }

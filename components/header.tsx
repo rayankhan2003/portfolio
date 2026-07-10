@@ -6,11 +6,11 @@ import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import ThemeToggle from "@/components/theme-toggle";
 
 const NAV_ITEMS = [
-  { href: "#home", id: "home", label: "Home" },
-  { href: "#about", id: "about", label: "About" },
-  { href: "#skills", id: "skills", label: "Skills" },
-  { href: "#projects", id: "projects", label: "Projects" },
-  { href: "#contact", id: "contact", label: "Contact" },
+  { href: "#home", id: "home", label: "~" },
+  { href: "#about", id: "about", label: "~/about" },
+  { href: "#skills", id: "skills", label: "~/skills" },
+  { href: "#projects", id: "projects", label: "~/projects" },
+  { href: "#contact", id: "contact", label: "~/contact" },
 ];
 
 export default function Header() {
@@ -56,12 +56,12 @@ export default function Header() {
     >
       <div className="container mx-auto flex items-center sm:pt-4 md:pt-0 justify-between">
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-foreground">
+        <Link href="/" className="font-mono text-lg font-semibold text-foreground">
           rayankhan<span className="text-primary">.dev</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex font-semibold text-[16px] items-center space-x-8">
+        <nav className="hidden md:flex font-mono text-sm items-center space-x-7">
           {NAV_ITEMS.map(({ href, id, label }) => (
             <Link
               key={id}
@@ -117,7 +117,7 @@ export default function Header() {
                 <Link
                   key={id}
                   href={href}
-                  className="block text-foreground font-semibold hover:text-primary"
+                  className="block text-foreground font-mono text-sm hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {label}
