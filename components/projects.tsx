@@ -1,200 +1,137 @@
-import { ArrowSquareOut, GithubLogo } from "@phosphor-icons/react/dist/ssr";
-import { Button } from "@/components/ui/button";
+"use client";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { ArrowSquareOut, GithubLogo } from "@phosphor-icons/react/dist/ssr";
+import { Button } from "@/components/ui/button";
 import Reveal from "@/components/reveal";
+import SectionPrompt from "@/components/section-prompt";
+import TerminalWindow from "@/components/terminal-window";
 
-function TechTag({ children }: { children: React.ReactNode }) {
+const PROJECTS = [
+  {
+    slug: "stayease",
+    title: "StayEase",
+    description:
+      "A hotel management system delivering seamless room bookings, efficient check-ins, and streamlined branch operations — with role-based workflows built for real front-desk teams.",
+    tags: ["Next.js", "Tailwind CSS", "Supabase"],
+    image: "/images/stayease.webp",
+    alt: "StayEase hotel management system screenshot",
+    code: "https://github.com/rayankhan2003/StayEase",
+    demo: "https://stay-ease-rayan.vercel.app/",
+  },
+  {
+    slug: "project-runner",
+    title: "Project Runner",
+    description:
+      "An all-in-one construction site management platform that centralizes material requests, deliveries, and on-site workflows into a single, easy-to-use system.",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    image: "/images/project-runner.webp",
+    alt: "Project Runner website mockup",
+    code: "https://github.com/rayankhan2003/project-runner-landing",
+    demo: "https://project-runner-landing-seven.vercel.app/",
+  },
+  {
+    slug: "forkify",
+    title: "Forkify",
+    description:
+      "A recipe search app for exploring meals, viewing ingredients and cooking steps, and bookmarking favorites for later.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: "/images/forkify.webp",
+    alt: "Forkify recipe website screenshot",
+    code: "https://github.com/rayankhan2003/forkify-main",
+    demo: "https://forkify-rayan.netlify.app/",
+  },
+];
+
+function ProjectCase({
+  project,
+  index,
+  reverse,
+}: {
+  project: (typeof PROJECTS)[number];
+  index: number;
+  reverse: boolean;
+}) {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-28, 28]);
+
   return (
-    <span className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full font-medium text-sm">
-      {children}
-    </span>
+    <Reveal>
+      <TerminalWindow title={`~/projects/${project.slug}`}>
+        <div
+          className={`grid lg:grid-cols-2 gap-0 ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}
+        >
+          <div ref={imgRef} className="overflow-hidden">
+            <motion.div style={{ y }} className="h-full">
+              <Image
+                src={project.image}
+                alt={project.alt}
+                width={700}
+                height={560}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+
+          <div className="p-6 sm:p-8 flex flex-col justify-center gap-4">
+            <span className="font-mono text-xs text-muted-foreground">
+              case {String(index + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}
+            </span>
+
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+              {project.title}
+            </h3>
+
+            <p className="text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
+
+            <p className="font-mono text-xs text-muted-foreground flex flex-wrap gap-x-2 gap-y-1">
+              {project.tags.map((tag) => (
+                <span key={tag} className="text-primary">
+                  #{tag.replace(/\s+/g, "").toLowerCase()}
+                </span>
+              ))}
+            </p>
+
+            <div className="flex gap-3 pt-2">
+              <Link href={project.code} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="gap-2 bg-transparent font-mono">
+                  <GithubLogo weight="light" className="w-4 h-4" />
+                  code
+                </Button>
+              </Link>
+              <Link href={project.demo} target="_blank" rel="noopener noreferrer">
+                <Button className="gap-2 font-mono">
+                  <ArrowSquareOut weight="light" className="w-4 h-4" />
+                  demo
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </TerminalWindow>
+    </Reveal>
   );
 }
 
 export default function Projects() {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto">
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="mb-16 space-y-4">
-          <p className="text-primary font-extrabold text-lg tracking-wide uppercase">
-            My Projects
-          </p>
-          <h2 className="text-4xl font-bold text-foreground">
-            Each project is a unique piece of development
-          </h2>
-        </Reveal>
+      <h2 className="sr-only">Projects</h2>
+      <SectionPrompt path="projects" command="ls -la --sort=recent" className="mb-10" />
 
-        <div className="space-y-20">
-          <Reveal className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-center">
-              <h3 className="text-2xl font-bold text-foreground">StayEase</h3>
-
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">
-                A hotel management system that delivers seamless room bookings,
-                efficient check-ins, and streamlined branch operations. The
-                platform provides an interface for exploring room options,
-                managing reservations, and enabling role-based workflows that
-                enhance service quality and overall guest satisfaction.
-              </p>
-
-              <div className="flex gap-4 items-center justify-center">
-                <TechTag>Next.js</TechTag>
-                <TechTag>Tailwind CSS</TechTag>
-                <TechTag>Supabase</TechTag>
-              </div>
-
-              <div className="flex justify-center mt-7 gap-4">
-                <Link
-                  href={"https://github.com/rayankhan2003/StayEase"}
-                  target="_blank"
-                >
-                  <Button
-                    variant="outline"
-                    className="flex items-center gap-2 bg-transparent"
-                  >
-                    <span>Code</span>
-                    <GithubLogo weight="light" className="w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link
-                  href={"https://stay-ease-rayan.vercel.app/"}
-                  target="_blank"
-                >
-                  <Button className="flex items-center gap-2">
-                    <span>Live Demo</span>
-                    <ArrowSquareOut weight="light" className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="relative group overflow-hidden rounded-lg shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.25)]">
-              <Image
-                src="/images/stayease.webp"
-                alt="StayEase hotel management system screenshot"
-                width={600}
-                height={600}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative group overflow-hidden rounded-lg shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.25)] lg:order-2">
-              <Image
-                src="/images/project-runner.webp"
-                alt="Project runner Website Mockup"
-                width={600}
-                height={600}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            <div className="space-y-6 lg:order-1">
-              <div className="space-y-2 text-center">
-                <h3 className="text-2xl font-bold text-foreground">
-                  Project Runner
-                </h3>
-
-                <p className="text-muted-foreground text-lg leading-relaxed max-w-xs mx-auto">
-                  Project Runner is an all-in-one construction site management
-                  platform designed to eliminate operational chaos and
-                  streamline day-to-day site coordination. Built specifically
-                  for builders and construction teams, the platform centralizes
-                  material requests, deliveries, and on-site workflows into a
-                  single, easy-to-use system.
-                </p>
-
-                <div className="flex justify-center gap-4">
-                  <TechTag>React</TechTag>
-                  <TechTag>Tailwind CSS</TechTag>
-                  <TechTag>JavaScript</TechTag>
-                </div>
-
-                <div className="flex justify-center mt-7 gap-4">
-                  <Link
-                    href={
-                      "https://github.com/rayankhan2003/project-runner-landing"
-                    }
-                    target="_blank"
-                  >
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2 bg-transparent"
-                    >
-                      <span>Code</span>
-                      <GithubLogo weight="light" className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                  <Link
-                    href={"https://project-runner-landing-seven.vercel.app/"}
-                    target="_blank"
-                  >
-                    <Button className="flex items-center gap-2">
-                      <span>Live Demo</span>
-                      <ArrowSquareOut weight="light" className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="rounded-2xl bg-card shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.15)] p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-8">
-              <div className="relative shrink-0 w-full sm:w-48 aspect-square overflow-hidden rounded-xl group">
-                <Image
-                  src="/images/forkify.webp"
-                  alt="Forkify recipe website screenshot"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="flex-1 text-center sm:text-left space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Forkify</h3>
-
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  A recipe website that allows users to search and explore
-                  different meals. The website provides an interface for
-                  viewing ingredients, cooking steps, and bookmarking favorite
-                  recipes.
-                </p>
-
-                <div className="flex gap-4 items-center justify-center sm:justify-start flex-wrap">
-                  <TechTag>HTML</TechTag>
-                  <TechTag>CSS</TechTag>
-                  <TechTag>JavaScript</TechTag>
-                </div>
-
-                <div className="flex justify-center sm:justify-start gap-4 pt-1">
-                  <Link
-                    href={"https://github.com/rayankhan2003/forkify-main"}
-                    target="_blank"
-                  >
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2 bg-transparent"
-                    >
-                      <span>Code</span>
-                      <GithubLogo weight="light" className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                  <Link
-                    href={"https://forkify-rayan.netlify.app/"}
-                    target="_blank"
-                  >
-                    <Button className="flex items-center gap-2">
-                      <span>Live Demo</span>
-                      <ArrowSquareOut weight="light" className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+      <div className="space-y-10">
+        {PROJECTS.map((project, i) => (
+          <ProjectCase key={project.slug} project={project} index={i} reverse={i % 2 === 1} />
+        ))}
       </div>
     </section>
   );

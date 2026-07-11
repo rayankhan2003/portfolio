@@ -10,6 +10,17 @@ import { motion } from "motion/react";
 import Reveal from "@/components/reveal";
 import TextType from "@/components/reactbits/text-type";
 import TerminalWindow from "@/components/terminal-window";
+import SectionWebGL from "@/components/three/section-webgl";
+import type { ShardConfig } from "@/components/three/wireframe-field";
+
+const HERO_SHARDS: ShardConfig[] = [
+  { position: [3.2, 1.2, -1], scale: 0.9, speed: 0.25, parallax: 0.6 },
+  { position: [-3.4, -0.8, -2.5], scale: 1.3, speed: 0.18, parallax: 0.6 },
+  { position: [2.6, -1.8, -3.5], scale: 0.7, speed: 0.3, parallax: 0.2 },
+  { position: [-2.6, 1.9, -4], scale: 1.0, speed: 0.22, parallax: 0.2 },
+  { position: [4.2, -0.4, -5], scale: 1.6, speed: 0.12, parallax: 0.2 },
+  { position: [-4.4, 0.3, -1.8], scale: 0.55, speed: 0.35, parallax: 0.6 },
+];
 
 const SOCIALS = [
   {
@@ -26,7 +37,8 @@ const SOCIALS = [
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center max-w-6xl mx-auto min-h-[100dvh] px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <section className="relative flex items-center justify-center max-w-6xl mx-auto min-h-[100dvh] px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <SectionWebGL shards={HERO_SHARDS} />
       <div className="max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* Left: the terminal session */}

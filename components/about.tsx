@@ -1,78 +1,108 @@
+"use client";
 import Image from "next/image";
-import { MapPin } from "@phosphor-icons/react/dist/ssr";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Reveal from "@/components/reveal";
+import SectionPrompt from "@/components/section-prompt";
+import TerminalWindow from "@/components/terminal-window";
+import SectionWebGL from "@/components/three/section-webgl";
+import type { ShardConfig } from "@/components/three/wireframe-field";
+
+const ABOUT_SHARDS: ShardConfig[] = [
+  { position: [-4, 1.5, -4], scale: 1.8, speed: 0.1 },
+  { position: [4.5, -1.8, -6], scale: 2.3, speed: 0.07 },
+  { position: [0, 2.5, -8], scale: 1.5, speed: 0.09 },
+];
+
+const FILE_LINES = [
+  { key: "role", value: "Full-Stack Web Developer" },
+  { key: "location", value: "Peshawar, Pakistan" },
+  { key: "focus", value: "React · Next.js · Node.js" },
+  { key: "status", value: "open to work" },
+];
+
+const BIO =
+  "I'm Rayan Khan. I work across the full stack — clean, responsive interfaces with React and Tailwind on the front end, reliable APIs and server logic with Node.js on the back. I like writing code that works and that also makes life easier for whoever's using it. Outside the editor, I like sharing ideas and learning new ways to solve real problems through software.";
+
+const listVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+};
+
+const lineVariants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+};
 
 export default function About() {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-32, 32]);
+
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        {/* Hero Image with Badge */}
-        <Reveal x={-24} className="relative">
-          <div className="group relative rounded-2xl overflow-hidden shadow-[0_16px_48px_-12px_oklch(0.551_0.169_46_/_0.3)]">
-            <Image
-              src="/images/workspace.jpg"
-              alt="Developer workspace with laptop, tablet, and coffee"
-              width={600}
-              height={400}
-              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
+    <section className="relative max-w-6xl mx-auto px-6 py-24">
+      <SectionWebGL shards={ABOUT_SHARDS} cameraZ={5} />
+      <h2 className="sr-only">About</h2>
+      <SectionPrompt path="about" command="cat about.md" className="mb-10" />
 
-          {/* Circular Badge */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-background rounded-full shadow-[0_8px_24px_-6px_oklch(0.551_0.169_46_/_0.3)] flex items-center justify-center border-4 border-background">
-            <div className="relative w-30 h-30">
-              {/* Circular Text */}
-              <svg
-                className="w-full h-full animate-spin-slow"
-                viewBox="0 0 100 100"
-              >
-                <defs>
-                  <path
-                    id="circle"
-                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                  />
-                </defs>
-                <text className="text-[10px] font-serif font-medium fill-foreground tracking-wider">
-                  <textPath href="#circle">
-                    DEVELOPER • FRONT END • WEB •
-                  </textPath>
-                </text>
-              </svg>
+      <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
+        <Reveal>
+          <TerminalWindow title="about.md" contentClassName="p-6 sm:p-8">
+            <motion.dl
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+              className="font-mono text-sm space-y-1.5 mb-6"
+            >
+              {FILE_LINES.map(({ key, value }) => (
+                <motion.div key={key} variants={lineVariants} className="flex gap-3">
+                  <dt className="text-primary shrink-0">{key}:</dt>
+                  <dd className="text-muted-foreground">{value}</dd>
+                </motion.div>
+              ))}
+            </motion.dl>
 
-              {/* Center Avatar */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground text-sm font-bold tracking-tight">
-                    RK
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div className="h-px bg-border mb-6" />
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-foreground/90 text-base sm:text-lg leading-relaxed"
+            >
+              {BIO}
+            </motion.p>
+          </TerminalWindow>
         </Reveal>
 
-        {/* Content */}
-        <Reveal x={24} delay={0.15} className="space-y-6">
-          <div className="space-y-2">
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-              A Creative Frontend Developer based in Peshawar, Pakistan{" "}
-              <MapPin
-                weight="light"
-                className="inline-block w-8 h-8 text-primary ml-1"
-              />
-            </h2>
+        <Reveal delay={0.15} className="relative" x={24}>
+          <div ref={imgRef}>
+            <motion.div style={{ y }}>
+              <TerminalWindow title="workspace.jpg">
+                <Image
+                  src="/images/workspace.jpg"
+                  alt="Rayan's development workspace with laptop, tablet, and coffee"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+              </TerminalWindow>
+            </motion.div>
           </div>
 
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            I’m Rayan Khan, a Full-Stack Developer who enjoys working across
-            both the front-end and back-end of modern web applications. On the
-            front-end, I focus on creating clean, responsive interfaces with
-            React and Tailwind, while on the back-end I build reliable APIs and
-            server logic using Node.js. I like writing code that not only works
-            but also makes life easier for the people using it. Beyond the
-            technical side, I value working with others, sharing ideas, and
-            learning new approaches to solve real problems through technology.
-          </p>
+          <div className="absolute -bottom-4 left-4 sm:left-8 flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 font-mono text-xs shadow-lg">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+            </span>
+            available for freelance
+          </div>
         </Reveal>
       </div>
     </section>

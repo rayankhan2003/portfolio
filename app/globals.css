@@ -140,8 +140,17 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Lenis drives scroll easing; native smooth-scroll would double up */
+html.lenis {
+  height: auto;
+}
+
+html.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 /* keep anchored sections clear of the sticky header */

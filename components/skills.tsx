@@ -1,5 +1,10 @@
+"use client";
 import Reveal from "@/components/reveal";
 import Counter from "@/components/counter";
+import SectionPrompt from "@/components/section-prompt";
+import TerminalWindow from "@/components/terminal-window";
+import SkillOrbs from "@/components/three/skill-orbs";
+import type { OrbSkill } from "@/components/three/skill-orb-field";
 import {
   HtmlIcon,
   CssIcon,
@@ -15,96 +20,81 @@ import {
   SupabaseIcon,
   GitHubIcon,
   GitLabIcon,
+  TypeScriptIcon,
+  NodeJsIcon,
+  FigmaIcon,
+  PostmanIcon,
+  GitIcon,
 } from "@/components/tech-icons";
 
-const SKILL_GROUPS = [
-  {
-    title: "Frontend",
-    span: "md:col-span-2",
-    icons: [
-      { Icon: HtmlIcon, name: "HTML" },
-      { Icon: CssIcon, name: "CSS" },
-      { Icon: JavaScriptIcon, name: "JavaScript" },
-      { Icon: ReactIcon, name: "React" },
-      { Icon: TailwindIcon, name: "Tailwind" },
-      { Icon: NextJsIcon, name: "Next.js", invert: true },
-      { Icon: ShadcnIcon, name: "shadcn/ui", invert: true },
-    ],
-  },
-  {
-    title: "Backend",
-    span: "md:col-span-1",
-    icons: [
-      { Icon: PythonIcon, name: "Python" },
-      { Icon: FlaskIcon, name: "Flask" },
-      { Icon: MongoDbIcon, name: "MongoDB" },
-      { Icon: PostgresqlIcon, name: "PostgreSQL" },
-      { Icon: SupabaseIcon, name: "Supabase" },
-    ],
-  },
-  {
-    title: "Tools & Version Control",
-    span: "md:col-span-3",
-    icons: [
-      { Icon: GitHubIcon, name: "GitHub", invert: true },
-      { Icon: GitLabIcon, name: "GitLab" },
-    ],
-  },
+const SKILLS: OrbSkill[] = [
+  // core — used across nearly every project
+  { name: "HTML", tier: "core", Icon: HtmlIcon, color: "#E44D26" },
+  { name: "CSS", tier: "core", Icon: CssIcon, color: "#264DE4" },
+  { name: "JavaScript", tier: "core", Icon: JavaScriptIcon, color: "#F7DF1E" },
+  { name: "React", tier: "core", Icon: ReactIcon, color: "#61DAFB" },
+  { name: "Tailwind", tier: "core", Icon: TailwindIcon, color: "#06B6D4" },
+  { name: "Next.js", tier: "core", Icon: NextJsIcon, color: "#111111", invert: true },
+  // working knowledge — used on specific projects
+  { name: "TypeScript", tier: "working", Icon: TypeScriptIcon, color: "#3178C6" },
+  { name: "Node.js", tier: "working", Icon: NodeJsIcon, color: "#339933" },
+  { name: "shadcn/ui", tier: "working", Icon: ShadcnIcon, color: "#f5f5f5", invert: true },
+  { name: "Python", tier: "working", Icon: PythonIcon, color: "#3776AB" },
+  { name: "Flask", tier: "working", Icon: FlaskIcon, color: "#3BABC3" },
+  { name: "MongoDB", tier: "working", Icon: MongoDbIcon, color: "#599636" },
+  { name: "PostgreSQL", tier: "working", Icon: PostgresqlIcon, color: "#4169E1" },
+  { name: "Supabase", tier: "working", Icon: SupabaseIcon, color: "#3FCF8E" },
+  // familiar — tools, not deep usage
+  { name: "Git", tier: "familiar", Icon: GitIcon, color: "#F05032" },
+  { name: "GitHub", tier: "familiar", Icon: GitHubIcon, color: "#fafafa", invert: true },
+  { name: "GitLab", tier: "familiar", Icon: GitLabIcon, color: "#FC6D26" },
+  { name: "Figma", tier: "familiar", Icon: FigmaIcon, color: "#A259FF" },
+  { name: "Postman", tier: "familiar", Icon: PostmanIcon, color: "#FF6C37" },
 ];
 
 const STATS = [
-  { to: 3, suffix: "+", label: "Projects Shipped" },
-  { to: 2, suffix: "+", label: "Years Learning & Building" },
-  { to: 14, suffix: "+", label: "Tools & Technologies" },
+  { to: 4, suffix: "+", label: "projects_shipped" },
+  { to: 2, suffix: "+", label: "years_building" },
+  { to: 19, suffix: "+", label: "tools_loaded" },
 ];
 
 export default function Skills() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
-      <Reveal className="mb-16 space-y-4 text-center lg:text-left">
-        <h2 className="text-4xl font-bold text-foreground">Skills & Stack</h2>
+      <h2 className="sr-only">Skills &amp; Stack</h2>
+      <SectionPrompt path="skills" command="./scan-stack.sh --list" className="mb-10" />
+
+      <Reveal>
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen px-4 sm:px-6">
+          <TerminalWindow
+            title="skills.gl"
+            className="max-w-[1600px] mx-auto bg-transparent"
+          >
+            <SkillOrbs skills={SKILLS} />
+          </TerminalWindow>
+        </div>
+        <p className="font-mono text-xs text-muted-foreground text-center mt-3">
+          drag a balloon and let go to fling it — hover to see how deep the experience goes
+        </p>
       </Reveal>
 
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
-        {SKILL_GROUPS.map((group, i) => (
-          <Reveal key={group.title} delay={i * 0.1} className={group.span}>
-            <div className="rounded-2xl bg-card p-8 h-full shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.12)]">
-              <h3 className="text-lg font-bold text-foreground mb-6">
-                {group.title}
-              </h3>
-              <div className="flex flex-wrap gap-6">
-                {group.icons.map(({ Icon, name, invert }) => (
-                  <div
-                    key={name}
-                    className="flex flex-col items-center gap-2 w-16"
-                  >
-                    <Icon className={`w-8 h-8 ${invert ? "dark:invert" : ""}`} />
-                    <span className="text-xs text-muted-foreground text-center">
-                      {name}
-                    </span>
-                  </div>
-                ))}
+      <Reveal delay={0.15} className="mt-6">
+        <TerminalWindow title="stack.status" contentClassName="p-6 sm:p-8">
+          <div className="grid grid-cols-3 gap-4">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="text-center font-mono">
+                <Counter
+                  to={stat.to}
+                  suffix={stat.suffix}
+                  className="text-3xl sm:text-4xl font-bold text-primary"
+                />
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                  {stat.label}
+                </p>
               </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal delay={0.2}>
-        <div className="grid grid-cols-3 gap-4 rounded-2xl bg-card py-8 px-4 shadow-[0_8px_30px_-10px_oklch(0.551_0.169_46_/_0.12)]">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <Counter
-                to={stat.to}
-                suffix={stat.suffix}
-                className="text-3xl sm:text-4xl font-bold text-primary"
-              />
-              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </TerminalWindow>
       </Reveal>
     </section>
   );

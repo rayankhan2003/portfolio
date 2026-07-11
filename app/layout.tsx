@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import SmoothScroll from "@/components/smooth-scroll";
+import SceneCanvas from "@/components/three/scene-canvas";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,8 +57,10 @@ html {
           enableSystem
           disableTransitionOnChange
         >
+          <SmoothScroll />
           {children}
           <Toaster />
+          <SceneCanvas />
         </ThemeProvider>
       </body>
     </html>

@@ -163,6 +163,82 @@ export function GitLabIcon({ className }: { className?: string }) {
   );
 }
 
+export function TypeScriptIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="3" fill="#3178C6" />
+      <text
+        x="12"
+        y="16.5"
+        textAnchor="middle"
+        fontFamily="system-ui, sans-serif"
+        fontWeight="700"
+        fontSize="10.5"
+        fill="white"
+      >
+        TS
+      </text>
+    </svg>
+  );
+}
+
+export function NodeJsIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12 1.5l9 5.25v10.5L12 22.5l-9-5.25V6.75L12 1.5z"
+        stroke="#339933"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 6.75c-2.9 0-4.5 1.2-4.5 1.2 0 1.8 1.05 2.25 2.85 2.55 2.1.36 4.65.66 4.65 3 0 2.1-1.95 3-4.35 3-2.55 0-3.75-1.2-4.2-2.4"
+        stroke="#339933"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+export function FigmaIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 1a4 4 0 000 8h3V1H9z" fill="#F24E1E" />
+      <path d="M12 1h3a4 4 0 010 8h-3V1z" fill="#FF7262" />
+      <path d="M12 9h3a4 4 0 010 8h-3V9z" fill="#A259FF" />
+      <path d="M9 9h3v7.5A3.5 3.5 0 119 13V9z" fill="#0ACF83" />
+      <path d="M9 9a4 4 0 100-8" fill="#1ABCFE" fillOpacity="0" />
+      <circle cx="9" cy="13" r="3.5" fill="#1ABCFE" />
+    </svg>
+  );
+}
+
+export function PostmanIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10.5" fill="#FF6C37" />
+      <path
+        d="M12 5.5l1.4 3.6 3.85.3-2.95 2.5.95 3.75L12 13.6l-3.25 2.05.95-3.75-2.95-2.5 3.85-.3L12 5.5z"
+        fill="white"
+      />
+    </svg>
+  );
+}
+
+export function GitIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="6" cy="6" r="2.2" stroke="#F05032" strokeWidth="1.6" />
+      <circle cx="6" cy="18" r="2.2" stroke="#F05032" strokeWidth="1.6" />
+      <circle cx="17" cy="12" r="2.2" stroke="#F05032" strokeWidth="1.6" />
+      <path d="M6 8.2V18" stroke="#F05032" strokeWidth="1.6" />
+      <path d="M6 8.2c0 3 2.5 3.8 5 3.8h3.8" stroke="#F05032" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
 export function ShadcnIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
