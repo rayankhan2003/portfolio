@@ -1,4 +1,5 @@
 "use client";
+import { useViewportWidth } from "@/hooks/use-viewport-width";
 import Reveal from "@/components/reveal";
 import Counter from "@/components/counter";
 import SectionPrompt from "@/components/section-prompt";
@@ -37,7 +38,7 @@ const SKILLS: OrbSkill[] = [
   { name: "Next.js", tier: "core", Icon: NextJsIcon, color: "#111111", invert: true },
   // working knowledge — used on specific projects
   { name: "TypeScript", tier: "working", Icon: TypeScriptIcon, color: "#3178C6" },
-  { name: "Node.js", tier: "working", Icon: NodeJsIcon, color: "#339933" },
+  { name: "Node.js", tier: "working", Icon: NodeJsIcon, color: "#339933", lightInvert: true },
   { name: "shadcn/ui", tier: "working", Icon: ShadcnIcon, color: "#f5f5f5", invert: true },
   { name: "Python", tier: "working", Icon: PythonIcon, color: "#3776AB" },
   { name: "Flask", tier: "working", Icon: FlaskIcon, color: "#3BABC3" },
@@ -47,7 +48,7 @@ const SKILLS: OrbSkill[] = [
   // familiar — tools, not deep usage
   { name: "Git", tier: "familiar", Icon: GitIcon, color: "#F05032" },
   { name: "GitHub", tier: "familiar", Icon: GitHubIcon, color: "#fafafa", invert: true },
-  { name: "GitLab", tier: "familiar", Icon: GitLabIcon, color: "#FC6D26" },
+  { name: "GitLab", tier: "familiar", Icon: GitLabIcon, color: "#FC6D26", lightInvert: true },
   { name: "Figma", tier: "familiar", Icon: FigmaIcon, color: "#A259FF" },
   { name: "Postman", tier: "familiar", Icon: PostmanIcon, color: "#FF6C37" },
 ];
@@ -59,13 +60,18 @@ const STATS = [
 ];
 
 export default function Skills() {
+  const viewportWidth = useViewportWidth();
+
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
+    <section className="max-w-6xl mx-auto px-6 py-24 min-w-0">
       <h2 className="sr-only">Skills &amp; Stack</h2>
       <SectionPrompt path="skills" command="./scan-stack.sh --list" className="mb-10" />
 
       <Reveal>
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen px-4 sm:px-6">
+        <div
+          className="relative left-1/2 px-4 sm:px-6"
+          style={{ width: viewportWidth ?? "100vw", transform: "translateX(-50%)" }}
+        >
           <TerminalWindow
             title="skills.gl"
             className="max-w-[1600px] mx-auto bg-transparent"

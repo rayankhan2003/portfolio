@@ -21,9 +21,13 @@ function FallbackList({ skills }: { skills: OrbSkill[] }) {
           <div className="flex flex-wrap gap-3">
             {skills
               .filter((s) => s.tier === tier)
-              .map(({ name, Icon, invert }) => (
+              .map(({ name, Icon, invert, lightInvert }) => (
                 <div key={name} className="flex items-center gap-1.5 font-mono text-xs">
-                  <Icon className={`w-3.5 h-3.5 ${invert ? "dark:invert" : ""}`} />
+                  <Icon
+                    className={`w-3.5 h-3.5 ${
+                      invert ? "dark:invert" : lightInvert ? "invert dark:invert-0" : ""
+                    }`}
+                  />
                   {name}
                 </div>
               ))}
@@ -67,9 +71,11 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
       {canRender3D ? (
         shouldMount && (
           <View className="absolute inset-0 cursor-grab active:cursor-grabbing">
-            {/* narrow FOV + pulled-back camera keeps spheres round at the
-                frame edges instead of stretching into ovals */}
-            <PerspectiveCamera makeDefault position={[0, 0, 11.8]} fov={35} />
+            {/* far-back camera + narrow FOV flattens the perspective — off-axis
+                balls otherwise get real angular distortion (their rendered
+                silhouette's visual center drifts from their true 3D center),
+                which showed up as icons looking "off-center" on edge balls */}
+            <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={20} />
             <SkillOrbScene skills={skills} />
           </View>
         )

@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
 import { type ThreeEvent } from "@react-three/fiber";
-import { Decal } from "@react-three/drei";
+import { Billboard } from "@react-three/drei";
 import {
   Physics,
   RigidBody,
@@ -19,7 +19,10 @@ export interface OrbSkill {
   /** the tech's real brand color, e.g. HTML's #E44D26 */
   color: string;
   Icon: React.ComponentType<{ className?: string }>;
+  /** icon is dark-by-default; flip to light in dark mode (2D fallback only) */
   invert?: boolean;
+  /** icon is white-by-default (for ball contrast); flip to dark in light mode */
+  lightInvert?: boolean;
 }
 
 const BALLOON_RADIUS = 1.05;
@@ -128,19 +131,25 @@ function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
           metalness={0}
           toneMapped={false}
         />
-        {/* map prop only — a child material would override drei's depth/offset
-            setup and cause ghosted/mirrored bleed-through from other balls.
-            small scale keeps the icon flat on the front face like a sticker
-            instead of shrink-wrapping around the sphere's curvature */}
-        {texture && (
-          <Decal
-            position={[0, 0, 1]}
-            scale={0.9}
-            map={texture}
-            material-toneMapped={false}
-          />
-        )}
       </mesh>
+      {/* a decal glued to the sphere surface only looks centered when the
+          ball sits dead-center in frame — balls near the edges are viewed
+          at an angle by the perspective camera, so a fixed-orientation decal
+          reads as skewed. A camera-facing Billboard always looks correct,
+          regardless of where the ball ends up on screen. */}
+      {texture && (
+        <Billboard>
+          <mesh position={[0, 0, BALLOON_RADIUS * 1.02]}>
+            <planeGeometry args={[BALLOON_RADIUS * 1.05, BALLOON_RADIUS * 1.05]} />
+            <meshBasicMaterial
+              map={texture}
+              transparent
+              toneMapped={false}
+              depthWrite={false}
+            />
+          </mesh>
+        </Billboard>
+      )}
     </RigidBody>
   );
 }

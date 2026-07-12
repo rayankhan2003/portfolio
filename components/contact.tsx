@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Reveal from "@/components/reveal";
 import SectionPrompt from "@/components/section-prompt";
 import TerminalWindow from "@/components/terminal-window";
+import MessageParticles from "@/components/three/message-particles";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -77,7 +78,8 @@ export default function Contact() {
   };
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-24">
+    <section className="relative w-full max-w-2xl mx-auto px-6 py-24">
+      <MessageParticles />
       <h2 className="sr-only">Contact</h2>
       <SectionPrompt path="contact" command="./send-message.sh" className="mb-10" />
 

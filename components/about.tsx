@@ -8,10 +8,12 @@ import TerminalWindow from "@/components/terminal-window";
 import SectionWebGL from "@/components/three/section-webgl";
 import type { ShardConfig } from "@/components/three/wireframe-field";
 
+// pushed well out past the cards on both sides — full-bleed View gives
+// plenty of room now, so these read as clean rings, not a tangled overlap
 const ABOUT_SHARDS: ShardConfig[] = [
-  { position: [-4, 1.5, -4], scale: 1.8, speed: 0.1 },
-  { position: [4.5, -1.8, -6], scale: 2.3, speed: 0.07 },
-  { position: [0, 2.5, -8], scale: 1.5, speed: 0.09 },
+  { position: [-6.8, 1.8, -5], scale: 1.9, speed: 0.1 },
+  { position: [7.2, -1.6, -6], scale: 2.3, speed: 0.07 },
+  { position: [-6, -2.6, -8], scale: 1.5, speed: 0.09 },
 ];
 
 const FILE_LINES = [
@@ -45,7 +47,7 @@ export default function About() {
 
   return (
     <section className="relative max-w-6xl mx-auto px-6 py-24">
-      <SectionWebGL shards={ABOUT_SHARDS} cameraZ={5} />
+      <SectionWebGL shards={ABOUT_SHARDS} cameraZ={5} shape="torus" />
       <h2 className="sr-only">About</h2>
       <SectionPrompt path="about" command="cat about.md" className="mb-10" />
 

@@ -99,18 +99,10 @@ export function NextJsIcon({ className }: { className?: string }) {
         d="M50 99.999C77.6142 99.999 100 77.6133 100 49.999C100 22.3848 77.6142 -0.000976562 50 -0.000976562C22.3858 -0.000976562 0 22.3848 0 49.999C0 77.6133 22.3858 99.999 50 99.999Z"
         fill="black"
       />
-      <path d="M83.06 87.5104L38.4122 29.999H30V69.9824H36.7298V38.5454L77.7773 91.5797C79.6294 90.3399 81.394 88.9798 83.06 87.5104Z" fill="url(#paint0_linear_790_2962)" />
-      <path d="M70.5558 29.999H63.8892V69.999H70.5558V29.999Z" fill="url(#paint1_linear_790_2962)" />
-      <defs>
-        <linearGradient id="paint0_linear_790_2962" x1="60.5555" y1="64.7213" x2="80.2778" y2="89.1656" gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="paint1_linear_790_2962" x1="67.2225" y1="29.999" x2="67.1109" y2="59.3741" gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
-        </linearGradient>
-      </defs>
+      {/* solid fill, not the source logo's fade-to-transparent gradient —
+          a fade reads as muddy/faint at the small size of a ball badge */}
+      <path d="M83.06 87.5104L38.4122 29.999H30V69.9824H36.7298V38.5454L77.7773 91.5797C79.6294 90.3399 81.394 88.9798 83.06 87.5104Z" fill="white" />
+      <path d="M70.5558 29.999H63.8892V69.999H70.5558V29.999Z" fill="white" />
     </svg>
   );
 }
@@ -157,7 +149,7 @@ export function GitHubIcon({ className }: { className?: string }) {
 
 export function GitLabIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="#FC6D26" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
       <path d="m23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z" />
     </svg>
   );
@@ -187,14 +179,14 @@ export function NodeJsIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M12 1.5l9 5.25v10.5L12 22.5l-9-5.25V6.75L12 1.5z"
-        stroke="#339933"
-        strokeWidth="1.6"
+        stroke="white"
+        strokeWidth="2.1"
         strokeLinejoin="round"
       />
       <path
         d="M12 6.75c-2.9 0-4.5 1.2-4.5 1.2 0 1.8 1.05 2.25 2.85 2.55 2.1.36 4.65.66 4.65 3 0 2.1-1.95 3-4.35 3-2.55 0-3.75-1.2-4.2-2.4"
-        stroke="#339933"
-        strokeWidth="1.4"
+        stroke="white"
+        strokeWidth="1.8"
         strokeLinecap="round"
         fill="none"
       />

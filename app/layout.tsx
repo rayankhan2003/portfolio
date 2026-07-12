@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import SmoothScroll from "@/components/smooth-scroll";
 import SceneCanvas from "@/components/three/scene-canvas";
+import IntroOverlay from "@/components/intro-overlay";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ html {
           disableTransitionOnChange
         >
           <SmoothScroll />
+          <IntroOverlay />
           {children}
           <Toaster />
           <SceneCanvas />

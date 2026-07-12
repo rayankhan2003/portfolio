@@ -3,8 +3,10 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import HeroBackground from "@/components/hero-background";
+import Experience from "@/components/experience";
 import Skills from "@/components/skills";
-import Projects from "@/components/projects";
+import FeaturedProjects from "@/components/featured-projects";
+import GithubActivity from "@/components/github-activity";
 import Contact from "@/components/contact";
 
 export default function Home() {
@@ -29,11 +31,17 @@ export default function Home() {
         <section id="about" className="min-h-[100dvh] flex items-center">
           <About />
         </section>
+        <section id="experience" className="flex items-center">
+          <Experience />
+        </section>
         <section id="skills" className="flex items-center">
           <Skills />
         </section>
-        <section id="projects" className="min-h-[100dvh] flex items-center">
-          <Projects />
+        <section id="projects">
+          <FeaturedProjects />
+        </section>
+        <section id="github" className="flex items-center">
+          <GithubActivity />
         </section>
         <section id="contact" className="flex items-center">
           <Contact />

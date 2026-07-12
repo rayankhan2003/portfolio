@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import * as THREE from "three";
 
 /** Rasterizes one of our tech-icons.tsx SVG components into a transparent-background
- *  canvas texture, suitable for projecting onto a mesh via drei's <Decal>. */
+ *  canvas texture, for use on a plane mesh (e.g. inside a drei <Billboard>). */
 export function useIconTexture(
   Icon: React.ComponentType<{ className?: string }>
 ): THREE.Texture | null {
@@ -14,11 +14,15 @@ export function useIconTexture(
     let cancelled = false;
     let created: THREE.CanvasTexture | null = null;
 
-    const markup = renderToStaticMarkup(<Icon />);
-    const withXmlns = markup.includes("xmlns=")
-      ? markup
-      : markup.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
-    const svg64 = btoa(unescape(encodeURIComponent(withXmlns)));
+    // our icons declare viewBox but not width/height — without an explicit
+    // square intrinsic size, some browsers rasterize a non-square default,
+    // which is what was nudging certain icons off-center on the ball
+    let markup = renderToStaticMarkup(<Icon />);
+    if (!markup.includes("xmlns=")) {
+      markup = markup.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+    markup = markup.replace("<svg", '<svg width="256" height="256"');
+    const svg64 = btoa(unescape(encodeURIComponent(markup)));
     const dataUrl = `data:image/svg+xml;base64,${svg64}`;
 
     const img = new Image();
@@ -41,9 +45,6 @@ export function useIconTexture(
       const pad = size * 0.06;
       ctx.drawImage(img, pad, pad, size - pad * 2, size - pad * 2);
       created = new THREE.CanvasTexture(canvas);
-      // DecalGeometry's UVs use the opposite vertical convention to three's
-      // default — without this, icons land flipped on the ball
-      created.flipY = false;
       created.colorSpace = THREE.SRGBColorSpace;
       created.needsUpdate = true;
       setTexture(created);

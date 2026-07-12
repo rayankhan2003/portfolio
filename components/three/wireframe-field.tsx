@@ -3,6 +3,8 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+export type ShardShape = "icosahedron" | "torus" | "box" | "octahedron";
+
 export interface ShardConfig {
   position: [number, number, number];
   scale: number;
@@ -11,7 +13,21 @@ export interface ShardConfig {
   parallax?: number;
 }
 
-function Shard({ position, scale, speed, parallax = 0, color }: ShardConfig & { color: string }) {
+function ShardGeometry({ shape }: { shape: ShardShape }) {
+  if (shape === "torus") return <torusGeometry args={[0.8, 0.22, 6, 12]} />;
+  if (shape === "box") return <boxGeometry args={[1.3, 1.3, 1.3]} />;
+  if (shape === "octahedron") return <octahedronGeometry args={[1.1, 0]} />;
+  return <icosahedronGeometry args={[1, 0]} />;
+}
+
+function Shard({
+  position,
+  scale,
+  speed,
+  parallax = 0,
+  color,
+  shape,
+}: ShardConfig & { color: string; shape: ShardShape }) {
   const ref = useRef<THREE.Mesh>(null);
   const seed = useMemo(() => Math.random() * Math.PI * 2, []);
 
@@ -29,7 +45,7 @@ function Shard({ position, scale, speed, parallax = 0, color }: ShardConfig & { 
 
   return (
     <mesh ref={ref} position={position} scale={scale}>
-      <icosahedronGeometry args={[1, 0]} />
+      <ShardGeometry shape={shape} />
       <meshBasicMaterial color={color} wireframe transparent opacity={0.55} />
     </mesh>
   );
@@ -38,17 +54,19 @@ function Shard({ position, scale, speed, parallax = 0, color }: ShardConfig & { 
 interface WireframeSceneProps {
   shards: ShardConfig[];
   color?: string;
+  shape?: ShardShape;
 }
 
 /** Scene fragment — render inside a drei <View> in the single global canvas. */
 export default function WireframeScene({
   shards,
   color = "#e08a3e",
+  shape = "icosahedron",
 }: WireframeSceneProps) {
   return (
     <>
       {shards.map((s, i) => (
-        <Shard key={i} {...s} color={color} />
+        <Shard key={i} {...s} color={color} shape={shape} />
       ))}
     </>
   );
