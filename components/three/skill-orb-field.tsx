@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
 import { type ThreeEvent } from "@react-three/fiber";
-import { Billboard } from "@react-three/drei";
+import { Billboard, Text } from "@react-three/drei";
 import {
   Physics,
   RigidBody,
@@ -25,17 +25,36 @@ export interface OrbSkill {
   lightInvert?: boolean;
 }
 
-const BALLOON_RADIUS = 1.05;
-const GRID_COLS = 6;
-const GRID_SPACING = 2.3; // > 2*radius, guarantees no spawn overlap
+// mobile gets smaller balls, a tighter grid, and a narrower spread — the
+// full-bleed canvas is portrait-ish on narrow screens, so there's much less
+// horizontal room than on desktop
+const DESKTOP = {
+  radius: 1.05,
+  gridCols: 6,
+  gridSpacing: 2.3, // > 2*radius, guarantees no spawn overlap
+  bounds: { x: 7.6, y: 2.9, z: 1.9 },
+};
+const MOBILE = {
+  radius: 0.62,
+  gridCols: 4,
+  gridSpacing: 1.4,
+  bounds: { x: 3.0, y: 3.6, z: 1.3 },
+};
 
-// container bounds the balloons fall and pack into — kept tight relative to
-// ball size/count so the pile fills and overflows the frame, not floats in empty space
-const BOUNDS = { x: 7.6, y: 2.9, z: 1.9 };
-
-function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
+function Balloon({
+  skill,
+  index,
+  mobile,
+}: {
+  skill: OrbSkill;
+  index: number;
+  mobile: boolean;
+}) {
+  const { radius: BALLOON_RADIUS, gridCols: GRID_COLS, gridSpacing: GRID_SPACING, bounds: BOUNDS } =
+    mobile ? MOBILE : DESKTOP;
   const bodyRef = useRef<RapierRigidBody>(null);
   const [dragging, setDragging] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const dragPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, 0, 1)), []);
   const dragPoint = useMemo(() => new THREE.Vector3(), []);
   const lastPoint = useRef(new THREE.Vector3());
@@ -54,7 +73,7 @@ function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
     const y = 4.5 + row * GRID_SPACING + Math.random() * 1.8;
     const z = (Math.random() - 0.5) * (BOUNDS.z - BALLOON_RADIUS);
     return [x, y, z];
-  }, [index]);
+  }, [index, mobile]);
 
   const restitution = useMemo(() => 0.35 + Math.random() * 0.3, []);
 
@@ -122,6 +141,15 @@ function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
+        onPointerEnter={(e) => {
+          e.stopPropagation();
+          setHovered(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerLeave={() => {
+          setHovered(false);
+          document.body.style.cursor = "";
+        }}
         scale={BALLOON_RADIUS}
       >
         <sphereGeometry args={[1, 32, 32]} />
@@ -136,10 +164,15 @@ function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
           ball sits dead-center in frame — balls near the edges are viewed
           at an angle by the perspective camera, so a fixed-orientation decal
           reads as skewed. A camera-facing Billboard always looks correct,
-          regardless of where the ball ends up on screen. */}
-      {texture && (
-        <Billboard>
-          <mesh position={[0, 0, BALLOON_RADIUS * 1.02]}>
+          regardless of where the ball ends up on screen. Same Billboard
+          carries the hover-only name tooltip, so it stays perfectly synced
+          with the ball's physics position with no extra bookkeeping. */}
+      <Billboard>
+        {texture && (
+          <mesh
+            position={[0, 0, BALLOON_RADIUS * 1.02]}
+            raycast={() => null}
+          >
             <planeGeometry args={[BALLOON_RADIUS * 1.05, BALLOON_RADIUS * 1.05]} />
             <meshBasicMaterial
               map={texture}
@@ -148,13 +181,28 @@ function Balloon({ skill, index }: { skill: OrbSkill; index: number }) {
               depthWrite={false}
             />
           </mesh>
-        </Billboard>
-      )}
+        )}
+        {hovered && (
+          <Text
+            position={[0, -BALLOON_RADIUS * 1.5, BALLOON_RADIUS * 1.1]}
+            fontSize={BALLOON_RADIUS * 0.42}
+            color="white"
+            outlineWidth={BALLOON_RADIUS * 0.045}
+            outlineColor="black"
+            anchorX="center"
+            anchorY="middle"
+            raycast={() => null}
+          >
+            {skill.name}
+          </Text>
+        )}
+      </Billboard>
     </RigidBody>
   );
 }
 
-function Walls() {
+function Walls({ mobile }: { mobile: boolean }) {
+  const { bounds: BOUNDS } = mobile ? MOBILE : DESKTOP;
   return (
     <>
       <CuboidCollider position={[0, -BOUNDS.y, 0]} args={[BOUNDS.x + 1, 0.5, BOUNDS.z + 1]} />
@@ -177,14 +225,20 @@ function Lights() {
 }
 
 /** Scene fragment — render inside a drei <View> in the single global canvas. */
-export default function SkillOrbScene({ skills }: { skills: OrbSkill[] }) {
+export default function SkillOrbScene({
+  skills,
+  mobile = false,
+}: {
+  skills: OrbSkill[];
+  mobile?: boolean;
+}) {
   return (
     <>
       <Lights />
       <Physics gravity={[0, -9.8, 0]}>
-        <Walls />
+        <Walls mobile={mobile} />
         {skills.map((skill, i) => (
-          <Balloon key={skill.name} skill={skill} index={i} />
+          <Balloon key={skill.name} skill={skill} index={i} mobile={mobile} />
         ))}
       </Physics>
     </>

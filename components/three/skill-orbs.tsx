@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { View, PerspectiveCamera } from "@react-three/drei";
 import SkillOrbScene, { type OrbSkill } from "./skill-orb-field";
+import { useViewportWidth } from "@/hooks/use-viewport-width";
 
 const TIER_LABEL: Record<OrbSkill["tier"], string> = {
   core: "core stack",
@@ -42,6 +43,8 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [canRender3D, setCanRender3D] = useState(false);
   const [shouldMount, setShouldMount] = useState(false);
+  const viewportWidth = useViewportWidth();
+  const isMobile = (viewportWidth ?? 1440) < 640;
 
   useEffect(() => {
     const reduceMotion = window.matchMedia(
@@ -50,9 +53,12 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
     setCanRender3D(!reduceMotion);
     if (reduceMotion || !wrapperRef.current) return;
 
-    // one-shot: defer the physics WASM load until first scrolled near, then
-    // keep it alive — the scene shares the single global canvas, so there is
-    // no per-section WebGL context to leak or lose
+    // one-shot: defer physics mount until the section is substantially in
+    // view (not just 150px away) — the fall-and-settle animation finishes in
+    // well under a second, faster than a real scroll takes to arrive, so
+    // triggering early meant every visitor only ever saw an already-settled,
+    // static-looking pile and never the actual drop. Triggering close to
+    // "centered in view" instead means people actually see the balls fall.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -60,23 +66,29 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
           observer.disconnect();
         }
       },
-      { rootMargin: "150px" }
+      { threshold: 0.4 }
     );
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div ref={wrapperRef} className="relative min-h-140 sm:min-h-168">
+    <div ref={wrapperRef} className="relative h-[75dvh] max-h-[820px] min-h-120">
       {canRender3D ? (
         shouldMount && (
           <View className="absolute inset-0 cursor-grab active:cursor-grabbing">
-            {/* far-back camera + narrow FOV flattens the perspective — off-axis
-                balls otherwise get real angular distortion (their rendered
-                silhouette's visual center drifts from their true 3D center),
-                which showed up as icons looking "off-center" on edge balls */}
-            <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={20} />
-            <SkillOrbScene skills={skills} />
+            {/* Billboard (see skill-orb-field.tsx) already keeps icons facing
+                the camera regardless of viewing angle, so FOV no longer needs
+                to be artificially narrow to avoid icon skew. A wider FOV here
+                means the whole ball pile actually fits in frame instead of
+                part of it falling outside the frustum. Mobile gets its own
+                tighter camera to match the narrower portrait-ish viewport. */}
+            <PerspectiveCamera
+              makeDefault
+              position={[0, 0, isMobile ? 14 : 15]}
+              fov={isMobile ? 50 : 34}
+            />
+            <SkillOrbScene skills={skills} mobile={isMobile} />
           </View>
         )
       ) : (
