@@ -109,7 +109,7 @@ export default function Hero() {
                 Contact me
               </motion.a>
               <motion.a
-                href="/rayan-cv.pdf"
+                href="/rayan-resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileTap={{ scale: 0.96 }}
