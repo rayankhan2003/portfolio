@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { View, PerspectiveCamera } from "@react-three/drei";
-import SkillOrbScene, { type OrbSkill } from "./skill-orb-field";
+import SkillOrbScene, { type OrbMode, type OrbSkill } from "./skill-orb-field";
 import { useViewportWidth } from "@/hooks/use-viewport-width";
 
 const TIER_LABEL: Record<OrbSkill["tier"], string> = {
@@ -43,8 +43,11 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [canRender3D, setCanRender3D] = useState(false);
   const [shouldMount, setShouldMount] = useState(false);
+  const [mode, setMode] = useState<OrbMode>("drop");
   const viewportWidth = useViewportWidth();
   const isMobile = (viewportWidth ?? 1440) < 640;
+  const cameraZ = isMobile ? 14 : 15;
+  const fov = isMobile ? 50 : 34;
 
   useEffect(() => {
     const reduceMotion = window.matchMedia(
@@ -73,10 +76,10 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="relative h-[75dvh] max-h-[820px] min-h-120">
+    <div ref={wrapperRef} className="relative h-[75dvh] max-h-[820px] min-h-120 select-none">
       {canRender3D ? (
         shouldMount && (
-          <View className="absolute inset-0 cursor-grab active:cursor-grabbing">
+          <View className="absolute inset-0">
             {/* Billboard (see skill-orb-field.tsx) already keeps icons facing
                 the camera regardless of viewing angle, so FOV no longer needs
                 to be artificially narrow to avoid icon skew. A wider FOV here
@@ -85,14 +88,50 @@ export default function SkillOrbs({ skills }: { skills: OrbSkill[] }) {
                 tighter camera to match the narrower portrait-ish viewport. */}
             <PerspectiveCamera
               makeDefault
-              position={[0, 0, isMobile ? 14 : 15]}
-              fov={isMobile ? 50 : 34}
+              position={[0, 0, cameraZ]}
+              fov={fov}
             />
-            <SkillOrbScene skills={skills} mobile={isMobile} />
+            <SkillOrbScene
+              skills={skills}
+              mode={mode}
+              mobile={isMobile}
+              cameraZ={cameraZ}
+              fov={fov}
+            />
           </View>
         )
       ) : (
         <FallbackList skills={skills} />
+      )}
+      {canRender3D && shouldMount && (
+        <div
+          role="radiogroup"
+          aria-label="Physics mode"
+          onPointerDown={(e) => e.stopPropagation()}
+          className="absolute right-3 top-3 z-10 flex gap-1 rounded-md border border-border bg-background/70 p-1 font-mono text-xs backdrop-blur"
+        >
+          {(
+            [
+              ["drop", "↓ gravity"],
+              ["attract", "◎ attract"],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={mode === value}
+              onClick={() => setMode(value)}
+              className={`rounded px-2.5 py-1 transition-colors ${
+                mode === value
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );
