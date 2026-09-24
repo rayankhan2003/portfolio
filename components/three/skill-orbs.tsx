@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { View, PerspectiveCamera } from "@react-three/drei";
-import SkillOrbScene, { type OrbMode, type OrbSkill } from "./skill-orb-field";
+import dynamic from "next/dynamic";
+import type { OrbMode, OrbSkill } from "./skill-orb-field";
 import { useViewportWidth } from "@/hooks/use-viewport-width";
+
+// the physics engine (Rapier, WASM) is the heaviest thing on the page —
+// fetch it only once the skills section is actually about to be shown
+const SkillOrbScene = dynamic(() => import("./skill-orb-field"), { ssr: false });
 
 const TIER_LABEL: Record<OrbSkill["tier"], string> = {
   core: "core stack",
