@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import SmoothScroll from "@/components/smooth-scroll";
 import SceneCanvas from "@/components/three/scene-canvas";
 import IntroOverlay from "@/components/intro-overlay";
+import EasterEggs from "@/components/easter-eggs/easter-eggs";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -62,6 +63,7 @@ html {
           <IntroOverlay />
           {children}
           <Toaster />
+          <EasterEggs />
           <SceneCanvas />
         </ThemeProvider>
       </body>

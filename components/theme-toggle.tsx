@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "@phosphor-icons/react/dist/ssr";
+import { crtSwitch } from "@/components/easter-eggs/crt";
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -11,7 +12,9 @@ export default function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={() =>
+        crtSwitch(() => setTheme(resolvedTheme === "dark" ? "light" : "dark"))
+      }
       aria-label="Toggle theme"
       className="p-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
     >

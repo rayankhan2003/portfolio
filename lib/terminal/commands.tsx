@@ -2,6 +2,9 @@ import type { ReactNode } from "react";
 import { FILE_LINES, BIO } from "@/components/about";
 import { COMMITS } from "@/components/experience";
 import { SKILLS } from "@/components/skills";
+import { crtSwitch } from "@/components/easter-eggs/crt";
+import { startMatrix } from "@/components/easter-eggs/easter-eggs";
+import Snake from "@/components/easter-eggs/snake";
 
 /** The slice of a Project the terminal needs — kept small because it is
  *  serialized from the server page into the client bundle. */
@@ -294,8 +297,9 @@ export const COMMANDS: Record<string, Command> = {
       if (file === ".secrets")
         return ctx.print(
           <span>
-            the real secret: every ball in <Accent>~/skills</Accent> can be
-            thrown. also try <Accent>sudo hire-me</Accent>.
+            the real secrets: every ball in <Accent>~/skills</Accent> can be
+            thrown, <Accent>snake</Accent> is installed, and ↑↑↓↓←→←→BA still
+            works. also try <Accent>sudo hire-me</Accent>.
           </span>
         );
       if (file === "resume.pdf")
@@ -417,7 +421,7 @@ export const COMMANDS: Record<string, Command> = {
       const next = ctx.args[0] ?? (ctx.theme === "dark" ? "light" : "dark");
       if (next !== "dark" && next !== "light")
         return ctx.print(<Err>theme: expected dark or light</Err>);
-      ctx.setTheme(next);
+      crtSwitch(() => ctx.setTheme(next));
       ctx.print(<Muted>theme set to {next}</Muted>);
     },
   },
@@ -494,6 +498,41 @@ export const COMMANDS: Record<string, Command> = {
   },
   hello: { summary: "", hidden: true, run: (ctx) => ctx.print("hey 👋 type `help` to look around.") },
   hi: { summary: "", hidden: true, run: (ctx) => ctx.print("hey 👋 type `help` to look around.") },
+  snake: {
+    summary: "",
+    hidden: true,
+    run: (ctx) =>
+      new Promise<void>((resolve) => {
+        const session = { done: false, score: 0 };
+        ctx.print(
+          <Snake
+            session={session}
+            onEnd={(score) => {
+              ctx.print(
+                <Muted>
+                  {score >= 10 ? "not bad. " : ""}final score: <Accent>{score}</Accent>
+                </Muted>
+              );
+              resolve();
+            }}
+          />
+        );
+      }),
+  },
+  matrix: {
+    summary: "",
+    hidden: true,
+    run: (ctx) => {
+      ctx.print(<Accent>wake up, neo…</Accent>);
+      ctx.close();
+      startMatrix();
+    },
+  },
+  games: {
+    summary: "",
+    hidden: true,
+    run: (ctx) => ctx.print(<span>installed: <Accent>snake</Accent>. more when I stop shipping real work.</span>),
+  },
   ping: { summary: "", hidden: true, run: (ctx) => ctx.print("pong — ~12ms from Peshawar") },
 };
 
