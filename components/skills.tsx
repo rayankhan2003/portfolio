@@ -80,7 +80,7 @@ export default function Skills() {
           </TerminalWindow>
         </div>
         <p className="font-mono text-xs text-muted-foreground text-center mt-3">
-          drag a balloon and let go to fling it — hover to see how deep the experience goes
+          drag a ball and let go to fling it — switch to attract and move your cursor through the swarm
         </p>
       </Reveal>
 
