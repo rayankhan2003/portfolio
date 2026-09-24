@@ -2,6 +2,18 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+let activeLenis: Lenis | null = null;
+
+/** Smooth-scroll to a section by id, falling back to native scrolling when
+ *  Lenis is off (reduced motion) or not mounted yet. */
+export function scrollToSection(id: string) {
+  const target = document.getElementById(id);
+  if (!target) return false;
+  if (activeLenis) activeLenis.scrollTo(target, { offset: -64 });
+  else target.scrollIntoView({ behavior: "smooth" });
+  return true;
+}
+
 export default function SmoothScroll() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -13,6 +25,7 @@ export default function SmoothScroll() {
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
+    activeLenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -34,6 +47,7 @@ export default function SmoothScroll() {
     return () => {
       document.removeEventListener("click", onAnchorClick);
       lenis.destroy();
+      activeLenis = null;
     };
   }, []);
 

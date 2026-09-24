@@ -8,8 +8,21 @@ import Skills from "@/components/skills";
 import FeaturedProjects from "@/components/featured-projects";
 import GithubActivity from "@/components/github-activity";
 import Contact from "@/components/contact";
+import Terminal from "@/components/terminal/terminal";
+import { getPublishedProjects } from "@/lib/projects/data";
 
-export default function Home() {
+export default async function Home() {
+  const projects = (await getPublishedProjects()).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    shortDescription: p.shortDescription,
+    technologies: p.technologies,
+    year: p.year,
+    category: p.category,
+    githubUrl: p.githubUrl,
+    liveUrl: p.liveUrl,
+  }));
+
   return (
     <div className="w-full ">
       <div className="sticky top-0 z-50">
@@ -48,6 +61,7 @@ export default function Home() {
         </section>
         <Footer />
       </main>
+      <Terminal projects={projects} />
     </div>
   );
 }

@@ -16,14 +16,14 @@ const ABOUT_SHARDS: ShardConfig[] = [
   { position: [-6, -2.6, -8], scale: 1.5, speed: 0.09 },
 ];
 
-const FILE_LINES = [
+export const FILE_LINES = [
   { key: "role", value: "Full-Stack Web Developer" },
   { key: "location", value: "Peshawar, Pakistan" },
   { key: "focus", value: "React · Next.js · Node.js" },
   { key: "status", value: "open to work" },
 ];
 
-const BIO =
+export const BIO =
   "I'm Rayan Khan. I work across the full stack — clean, responsive interfaces with React and Tailwind on the front end, reliable APIs and server logic with Node.js on the back. I like writing code that works and that also makes life easier for whoever's using it. Outside the editor, I like sharing ideas and learning new ways to solve real problems through software.";
 
 const listVariants = {
