@@ -243,3 +243,55 @@ section[id] {
     animation: none;
   }
 }
+
+/* ---------- easter eggs ---------- */
+
+/* theme switch as a CRT power cycle: shutters close to a glowing line, the
+   line collapses, the theme flips behind it, and the picture comes back */
+.crt-cycle {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+.crt-cycle::before,
+.crt-cycle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: #050505;
+  animation: crt-shutter 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.crt-cycle::before {
+  top: 0;
+  transform-origin: top;
+}
+.crt-cycle::after {
+  bottom: 0;
+  transform-origin: bottom;
+}
+.crt-cycle > span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  margin-top: -1px;
+  background: #fff;
+  box-shadow: 0 0 12px 3px var(--primary), 0 0 40px 8px rgb(255 255 255 / 0.5);
+  opacity: 0;
+  animation: crt-line 0.8s ease-out forwards;
+}
+@keyframes crt-shutter {
+  0% { transform: scaleY(0); }
+  32%, 58% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+@keyframes crt-line {
+  0%, 26% { opacity: 0; transform: scaleX(1); }
+  32% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(0.002); }
+  56%, 100% { opacity: 0; transform: scaleX(0); }
+}
