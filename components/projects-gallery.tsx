@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import TerminalWindow from "@/components/terminal-window";
 import type { Project } from "@/lib/projects/types";
+import Projects3D from "@/components/projects-3d";
 
 function GalleryCard({ project, active }: { project: Project; active: boolean }) {
   return (
@@ -53,6 +54,14 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
   const [index, setIndex] = useState(0);
   const [category, setCategory] = useState<string | null>(null);
   const wheelLock = useRef(0);
+  // 3D is the default wherever WebGL scenes run at all (the global canvas
+  // is skipped for reduced motion); "classic" keeps the original layouts
+  const [can3D, setCan3D] = useState(false);
+  const [mode, setMode] = useState<"3d" | "classic">("3d");
+  useEffect(() => {
+    setCan3D(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+  const show3D = can3D && mode === "3d";
 
   const categories = useMemo(
     () => [...new Set(projects.map((p) => p.category).filter(Boolean))],
@@ -105,11 +114,12 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
 
   return (
     <div>
-      {categories.length > 1 && (
+      <div className="max-w-6xl mx-auto px-6 mb-8 flex flex-wrap items-center justify-between gap-4">
+      {categories.length > 1 ? (
         <div
           role="group"
           aria-label="Filter by category"
-          className="max-w-6xl mx-auto px-6 mb-8 flex flex-wrap gap-2"
+          className="flex flex-wrap gap-2"
         >
           <Button
             variant={category === null ? "default" : "outline"}
@@ -131,6 +141,41 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
             </Button>
           ))}
         </div>
+      ) : (
+        <span />
+      )}
+      {can3D && (
+        <div
+          role="radiogroup"
+          aria-label="Layout"
+          className="flex gap-1 rounded-md border border-border p-1 font-mono text-xs"
+        >
+          {(["3d", "classic"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              role="radio"
+              aria-checked={mode === m}
+              onClick={() => setMode(m)}
+              className={`rounded px-2.5 py-1 transition-colors ${
+                mode === m
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {m}
+            </button>
+          ))}
+        </div>
+      )}
+      </div>
+
+      {show3D && (
+        <Projects3D
+          projects={visible}
+          index={Math.min(index, count - 1)}
+          setIndex={setIndex}
+        />
       )}
 
       {/* desktop: center-stage deck */}
@@ -140,7 +185,7 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
         tabIndex={0}
         onKeyDown={onKeyDown}
         onWheel={onWheel}
-        className="hidden lg:block relative mx-auto max-w-6xl px-6 outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
+        className={`${show3D ? "hidden" : "hidden lg:block"} relative mx-auto max-w-6xl px-6 outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg`}
       >
         <div className="relative h-[640px] overflow-hidden">
           {/* rear neighbors */}
@@ -229,7 +274,7 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
       </section>
 
       {/* mobile / tablet: plain responsive grid */}
-      <div className="lg:hidden max-w-6xl mx-auto px-6 grid gap-8 sm:grid-cols-2">
+      <div className={`${show3D ? "hidden" : "lg:hidden"} max-w-6xl mx-auto px-6 grid gap-8 sm:grid-cols-2`}>
         {visible.map((p) => (
           <Link
             key={p.id}
