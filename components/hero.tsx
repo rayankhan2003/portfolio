@@ -10,6 +10,7 @@ import { motion } from "motion/react";
 import Reveal from "@/components/reveal";
 import TextType from "@/components/reactbits/text-type";
 import TerminalWindow from "@/components/terminal-window";
+import { openTerminal } from "@/components/terminal/terminal";
 import SectionWebGL from "@/components/three/section-webgl";
 import type { ShardConfig } from "@/components/three/wireframe-field";
 
@@ -133,6 +134,21 @@ export default function Hero() {
                   </a>
                 ))}
               </span>
+            </Reveal>
+
+            <Reveal delay={1.7}>
+              <button
+                type="button"
+                onClick={() => openTerminal("help")}
+                className="mt-6 font-mono text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                <span className="text-primary">›</span> this site has a real
+                shell — press{" "}
+                <kbd className="rounded border border-border px-1.5 py-0.5">
+                  ctrl K
+                </kbd>{" "}
+                or tap here
+              </button>
             </Reveal>
           </div>
 

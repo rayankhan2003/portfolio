@@ -12,7 +12,7 @@ const EXPERIENCE_SHARDS: ShardConfig[] = [
   { position: [-5.8, -2.6, -7.5], scale: 1, speed: 0.1 },
 ];
 
-const COMMITS = [
+export const COMMITS = [
   {
     hash: "8f2a1c9",
     tag: "HEAD -> main",

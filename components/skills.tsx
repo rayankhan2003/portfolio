@@ -28,7 +28,7 @@ import {
   GitIcon,
 } from "@/components/tech-icons";
 
-const SKILLS: OrbSkill[] = [
+export const SKILLS: OrbSkill[] = [
   // core — used across nearly every project
   { name: "HTML", tier: "core", Icon: HtmlIcon, color: "#E44D26" },
   { name: "CSS", tier: "core", Icon: CssIcon, color: "#264DE4" },

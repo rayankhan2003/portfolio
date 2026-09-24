@@ -4,6 +4,21 @@ import { useState, useEffect } from "react";
 import { List, X } from "@phosphor-icons/react/dist/ssr";
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import ThemeToggle from "@/components/theme-toggle";
+import { openTerminal } from "@/components/terminal/terminal";
+
+function TerminalButton() {
+  return (
+    <button
+      type="button"
+      onClick={() => openTerminal()}
+      aria-label="Open terminal (Ctrl+K)"
+      title="Open terminal (Ctrl+K)"
+      className="p-2 rounded-lg font-mono text-sm text-foreground hover:bg-secondary hover:text-primary transition-colors"
+    >
+      &gt;_
+    </button>
+  );
+}
 
 const NAV_ITEMS = [
   { href: "#home", id: "home", label: "~" },
@@ -84,11 +99,15 @@ export default function Header() {
               )}
             </Link>
           ))}
-          <ThemeToggle />
+          <span className="flex items-center gap-1 -mr-2">
+            <TerminalButton />
+            <ThemeToggle />
+          </span>
         </nav>
 
         {/* Mobile: theme toggle + hamburger */}
         <div className="flex md:hidden items-center gap-1">
+          <TerminalButton />
           <ThemeToggle />
           <button
             className="p-2 text-foreground"
