@@ -1,0 +1,131 @@
+<!doctype html>
+<!--
+  Source for public/rayan-resume.pdf. Edit this file, then run:
+    pnpm resume
+  Single column, real text, standard headings: keeps the PDF readable by
+  applicant tracking systems.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Muhammad Riyan Khan — Resume</title>
+<style>
+  @page { size: Letter; margin: 0.45in 0.55in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 10.6pt;
+    line-height: 1.24;
+    color: #000;
+  }
+  a { color: inherit; text-decoration: none; }
+  header { text-align: center; margin-bottom: 6pt; }
+  h1 { font-size: 25pt; font-weight: bold; letter-spacing: 0.3pt; line-height: 1.05; }
+  .contact { font-size: 10pt; margin-top: 2pt; }
+  .contact a { text-decoration: underline; }
+  .contact .sep { margin: 0 4pt; }
+  h2 {
+    font-size: 12pt;
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.4pt;
+    border-bottom: 0.7pt solid #000;
+    margin: 9pt 0 4pt;
+    padding-bottom: 1pt;
+  }
+  .entry { margin: 0 0 5pt 10pt; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .org { font-weight: bold; font-size: 11pt; }
+  .sub { font-style: italic; font-size: 10pt; }
+  .project-title { font-weight: bold; }
+  .stack { font-style: italic; }
+  .link { font-size: 9.5pt; text-decoration: underline; }
+  ul { margin: 1.5pt 0 0 14pt; list-style: none; }
+  li { position: relative; padding-left: 2pt; margin-bottom: 1.2pt; }
+  li::before { content: "•"; position: absolute; left: -10pt; font-size: 9pt; top: 0.5pt; }
+  .skills { margin-left: 10pt; }
+  .skills p { margin-bottom: 1.5pt; }
+  .skills b { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Muhammad Riyan Khan</h1>
+  <p class="contact">
+    0340-0958353<span class="sep">|</span><a href="mailto:rayan4khan1@gmail.com">rayan4khan1@gmail.com</a><span class="sep">|</span><a href="https://linkedin.com/in/rayankhanwebdev">linkedin.com/in/rayankhanwebdev</a><span class="sep">|</span><a href="https://github.com/rayankhan2003">github.com/rayankhan2003</a>
+  </p>
+</header>
+
+<section>
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="row"><span class="org">Edwardes College</span><span>Peshawar, Pakistan</span></div>
+    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span><span class="sub">2021 – 2025</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="row"><span class="org">Strings Technologies</span><span>Peshawar, Pakistan</span></div>
+    <div class="row"><span class="sub">Full Stack Developer</span><span class="sub">2026 – Present</span></div>
+    <ul>
+      <li>Built and shipped a three-tier student information portal end to end: a React + Vite frontend, a Flask REST API gateway, and an Odoo ERP backend.</li>
+      <li>Secured the Flask gateway with JWT authentication, Marshmallow request validation, and Redis-backed rate limiting, on PostgreSQL.</li>
+      <li>Developed the scholarship module end to end (multi-phase applications, evaluation sheets, configurable scoring), plus a CMS module for portal content.</li>
+      <li>Deployed to staging and production on Linux: Gunicorn services under systemd behind an nginx reverse proxy.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <div class="row">
+      <span><span class="project-title">Pulse</span> | <span class="stack">Next.js, Supabase, PostgreSQL, Recharts</span></span>
+    </div>
+    <ul>
+      <li>Built a self-hosted, privacy-first web analytics platform: a ~1 KB embeddable tracker, an ingestion API with bot filtering and Zod validation, and live dashboards for visitors, pages, referrers, countries and devices.</li>
+      <li>Designed cookieless unique-visitor counting with a daily-rotating salted hash, storing no cookies or IP addresses, so sites using it need no consent banner.</li>
+      <li>Moved analytics aggregation into PostgreSQL functions (time series, breakdowns, live visitors) protected by row-level security, with public read-only share links.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row">
+      <span><span class="project-title">Scan2Help</span> | <span class="stack">Next.js, TypeScript, Prisma, PostgreSQL</span></span>
+    </div>
+    <ul>
+      <li>Built an emergency-contact QR sticker platform: anyone who scans a sticker gets a bilingual (English/Urdu) page with the owner's emergency contacts and a one-tap Call Now button, with no app or signup.</li>
+      <li>Implemented passwordless magic-link login with single-use, 15-minute, SHA-256-hashed tokens and httpOnly JWT sessions; activating a QR requires both a session and ownership.</li>
+      <li>Protected phone numbers from bulk scraping by revealing them only on tap through a tracked API call, with per-IP cooldowns and rate limiting on sensitive routes.</li>
+      <li>Built the order flow for local payments (JazzCash/EasyPaisa, confirmed over WhatsApp): approving an order atomically mints the buyer's QR codes, and admins batch-generate print-ready sticker PDFs.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row">
+      <span><span class="project-title">Lecture2Note</span> | <span class="stack">React, Tailwind CSS, Python, FastAPI</span></span>
+    </div>
+    <ul>
+      <li>Built an AI study platform that turns lecture audio and video into structured notes, concise summaries and interactive quizzes.</li>
+      <li>Engineered the multi-stage processing pipeline (transcription → notes → summary → quiz) with upload handling and processing states, plus a review UI for studying notes and taking the generated quizzes.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <p><b>Languages</b>: JavaScript, TypeScript, Python, SQL, HTML, CSS</p>
+    <p><b>Frameworks/Libraries</b>: Next.js, React, Flask, FastAPI, Node.js, Vite, Tailwind CSS, shadcn/ui, Prisma</p>
+    <p><b>Databases</b>: PostgreSQL (functions, row-level security), Supabase, MongoDB, Redis</p>
+    <p><b>Backend &amp; Deployment</b>: REST APIs, authentication (JWT, magic links), rate limiting, Vercel, Linux (nginx, systemd, Gunicorn)</p>
+    <p><b>Developer Tools</b>: Git, GitHub, VS Code, Figma, Postman, Odoo</p>
+  </div>
+</section>
+
+</body>
+</html>
