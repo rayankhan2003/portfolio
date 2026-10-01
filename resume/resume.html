@@ -10,11 +10,11 @@
 <meta charset="utf-8">
 <title>Muhammad Riyan Khan — Resume</title>
 <style>
-  @page { size: Letter; margin: 0.45in 0.55in; }
+  @page { size: Letter; margin: 0.4in 0.55in; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: "Times New Roman", Times, serif;
-    font-size: 10.6pt;
+    font-size: 10.3pt;
     line-height: 1.24;
     color: #000;
   }
@@ -30,7 +30,7 @@
     font-variant: small-caps;
     letter-spacing: 0.4pt;
     border-bottom: 0.7pt solid #000;
-    margin: 9pt 0 4pt;
+    margin: 7pt 0 3pt;
     padding-bottom: 1pt;
   }
   .entry { margin: 0 0 5pt 10pt; }
@@ -44,6 +44,7 @@
   li { position: relative; padding-left: 2pt; margin-bottom: 1.2pt; }
   li::before { content: "•"; position: absolute; left: -10pt; font-size: 9pt; top: 0.5pt; }
   .context { font-size: 10pt; margin-top: 1pt; }
+  .summary { margin: 0 0 0 10pt; }
   .skills { margin-left: 10pt; }
   .skills p { margin-bottom: 1.5pt; }
   .skills b { font-weight: bold; }
@@ -54,16 +55,13 @@
 <header>
   <h1>Muhammad Riyan Khan</h1>
   <p class="contact">
-    0340-0958353<span class="sep">|</span><a href="mailto:rayan4khan1@gmail.com">rayan4khan1@gmail.com</a><span class="sep">|</span><a href="https://linkedin.com/in/rayankhanwebdev">linkedin.com/in/rayankhanwebdev</a><span class="sep">|</span><a href="https://github.com/rayankhan2003">github.com/rayankhan2003</a>
+    0340-0958353<span class="sep">|</span><a href="mailto:rayan4khan1@gmail.com">rayan4khan1@gmail.com</a><span class="sep">|</span><a href="https://rayankhan.dev">rayankhan.dev</a><span class="sep">|</span><a href="https://linkedin.com/in/rayankhanwebdev">linkedin.com/in/rayankhanwebdev</a><span class="sep">|</span><a href="https://github.com/rayankhan2003">github.com/rayankhan2003</a>
   </p>
 </header>
 
 <section>
-  <h2>Education</h2>
-  <div class="entry">
-    <div class="row"><span class="org">Edwardes College</span><span>Peshawar, Pakistan</span></div>
-    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span><span class="sub">2021 – 2025</span></div>
-  </div>
+  <h2>Summary</h2>
+  <p class="summary">Full stack developer specialising in Odoo ERP. I build ERP modules for HR, payroll, appraisals and finance, and the React and Flask applications that connect to them, from data model to production deployment. Outside work, I build voice and AI tools.</p>
 </section>
 
 <section>
@@ -75,9 +73,9 @@
     <ul>
       <li>Built the student portal: a React app on a Flask API gateway that reads live records from Odoo over JSON-RPC. Students check transcripts, CGPA, attendance and timetables, register for courses, and apply online for scholarships, hostel, transport and semester freeze.</li>
       <li>Hardened the gateway for real traffic with JWT authentication, request validation, Redis rate limiting and a caching layer that cuts repeat calls to Odoo; deployed with Gunicorn, systemd and nginx.</li>
-      <li>Built the scholarship system: a ~200-field need-based application with configurable scoring, and donor-funded seats (HEC, CMEEF, FATA) that waive specific fees and settle any shortfall or surplus on the student's fee account automatically.</li>
       <li>Built HR and payroll: promotions, transfers and disciplinary records, FBR income-tax withholding, allowances, hourly pay for visiting faculty, and payroll entries posted to the general ledger.</li>
       <li>Built the staff appraisal system: weighted scorecards for teaching, research and administration, approval from self-review through HOD and committee to dean, and access rules so each reviewer sees only their own department.</li>
+      <li>Built the scholarship system: a ~200-field need-based application with configurable scoring, and donor-funded seats (HEC, CMEEF, FATA) that waive specific fees and settle any shortfall or surplus on the student's fee account automatically.</li>
       <li>Built 8 PDF and Excel reports for donor claims, fund-utilization audits and annual staff evaluations.</li>
     </ul>
   </div>
@@ -88,42 +86,53 @@
 
   <div class="entry">
     <div class="row">
-      <span><span class="project-title">Pulse</span> | <span class="stack">Next.js, Supabase, PostgreSQL, Recharts</span></span>
+      <span><span class="project-title">JARVIS: voice assistant for macOS</span> | <span class="stack">Python, Pipecat, LLM tool calling</span></span>
     </div>
     <ul>
-      <li>Built a self-hosted, privacy-first web analytics platform: a ~1 KB embeddable tracker, an ingestion API with bot filtering and Zod validation, and live dashboards for visitors, pages, referrers, countries and devices.</li>
-      <li>Designed cookieless visitor counting with a daily-rotating salted hash (no cookies, no stored IPs, no consent banner), with aggregation in PostgreSQL functions behind row-level security.</li>
+      <li>A hands-free assistant that hears "Hey Jarvis", understands a request and acts on it: opening apps, controlling music and volume, setting reminders, searching the web.</li>
+      <li>Built to run free on an 8 GB laptop: the wake word and voice run locally, and a failover layer switches between free AI providers when one hits its daily limit, so it keeps working.</li>
     </ul>
   </div>
 
   <div class="entry">
     <div class="row">
-      <span><span class="project-title">Scan2Help</span> | <span class="stack">Next.js, TypeScript, Prisma, PostgreSQL</span></span>
+      <span><span class="project-title">Pulse: privacy-first web analytics</span> | <span class="stack">Next.js, Supabase, PostgreSQL</span></span>
     </div>
     <ul>
-      <li>Built an emergency-contact QR sticker platform: anyone who scans a sticker gets a bilingual (English/Urdu) page with the owner's emergency contacts and a one-tap Call Now button, with no app or signup.</li>
-      <li>Secured it with single-use, SHA-256-hashed magic-link login and scrape-proof phone numbers revealed only on tap, with per-IP rate limiting; approving a JazzCash/EasyPaisa order atomically mints the buyer's QR codes.</li>
+      <li>A self-hosted alternative to Google Analytics that sites can embed with a ~1 KB script and use without a cookie consent banner.</li>
+      <li>Counts unique visitors without cookies or stored IPs (daily-rotating salted hash); aggregation runs in PostgreSQL functions behind row-level security.</li>
     </ul>
   </div>
 
   <div class="entry">
     <div class="row">
-      <span><span class="project-title">Lecture2Note</span> | <span class="stack">React, Tailwind CSS, Python, FastAPI</span></span>
+      <span><span class="project-title">Scan2Help: emergency QR stickers</span> | <span class="stack">Next.js, Prisma, PostgreSQL</span></span>
+      <a class="link" href="https://rayankhan.dev/projects/scan2help">rayankhan.dev/projects/scan2help</a>
     </div>
     <ul>
-      <li>Built an AI study platform with a multi-stage pipeline (transcription → notes → summary → quiz) that turns lecture recordings into structured notes and interactive quizzes.</li>
+      <li>When someone has an accident, a stranger scans their sticker and gets a bilingual page with a one-tap call button to their family, with no app needed.</li>
+      <li>Phone numbers are protected from scraping (revealed only on tap, with per-IP rate limits), and the order flow works with local payments (JazzCash/EasyPaisa).</li>
     </ul>
   </div>
+
 </section>
 
 <section>
   <h2>Technical Skills</h2>
   <div class="skills">
-    <p><b>Languages</b>: JavaScript, TypeScript, Python, SQL, HTML, CSS</p>
-    <p><b>Frameworks/Libraries</b>: Odoo 19 (ORM, QWeb), Next.js, React, Flask, FastAPI, Node.js, Vite, Tailwind CSS, shadcn/ui, Prisma</p>
-    <p><b>Databases</b>: PostgreSQL (functions, row-level security), Supabase, MongoDB, Redis</p>
-    <p><b>Backend &amp; Deployment</b>: REST APIs, JSON-RPC, authentication (JWT, magic links), rate limiting, Vercel, Linux (nginx, systemd, Gunicorn)</p>
-    <p><b>Developer Tools</b>: Git, GitHub, VS Code, Figma, Postman</p>
+    <p><b>ERP &amp; Backend</b>: Odoo 19 (ORM, QWeb, access rules), Python, Flask, FastAPI, Node.js, REST, JSON-RPC</p>
+    <p><b>Frontend</b>: TypeScript, JavaScript, React, Next.js, Vite, Tailwind CSS, shadcn/ui</p>
+    <p><b>Data</b>: PostgreSQL (functions, row-level security), Supabase, Prisma, Redis, MongoDB</p>
+    <p><b>Infrastructure</b>: Linux, nginx, systemd, Gunicorn, Vercel, Git, GitHub</p>
+    <p><b>AI</b>: LLM tool calling, Pipecat, speech-to-text and text-to-speech pipelines</p>
+  </div>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="row"><span class="org">Edwardes College</span><span>Peshawar, Pakistan</span></div>
+    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span><span class="sub">2021 – 2025</span></div>
   </div>
 </section>
 
