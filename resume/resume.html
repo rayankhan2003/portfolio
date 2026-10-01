@@ -43,6 +43,7 @@
   ul { margin: 1.5pt 0 0 14pt; list-style: none; }
   li { position: relative; padding-left: 2pt; margin-bottom: 1.2pt; }
   li::before { content: "•"; position: absolute; left: -10pt; font-size: 9pt; top: 0.5pt; }
+  .context { font-size: 10pt; margin-top: 1pt; }
   .skills { margin-left: 10pt; }
   .skills p { margin-bottom: 1.5pt; }
   .skills b { font-weight: bold; }
@@ -69,12 +70,15 @@
   <h2>Experience</h2>
   <div class="entry">
     <div class="row"><span class="org">Strings Technologies</span><span>Peshawar, Pakistan</span></div>
-    <div class="row"><span class="sub">Full Stack Developer</span><span class="sub">2026 – Present</span></div>
+    <div class="row"><span class="sub">Odoo Technical &amp; Full Stack Developer</span><span class="sub">2026 – Present</span></div>
+    <p class="context">Campus management system for IMSciences: Odoo 19 ERP and a self-service student portal</p>
     <ul>
-      <li>Built and shipped a three-tier student information portal end to end: a React + Vite frontend, a Flask REST API gateway, and an Odoo ERP backend.</li>
-      <li>Secured the Flask gateway with JWT authentication, Marshmallow request validation, and Redis-backed rate limiting, on PostgreSQL.</li>
-      <li>Developed the scholarship module end to end (multi-phase applications, evaluation sheets, configurable scoring), plus a CMS module for portal content.</li>
-      <li>Deployed to staging and production on Linux: Gunicorn services under systemd behind an nginx reverse proxy.</li>
+      <li>Built the student portal: a React app on a Flask API gateway that reads live records from Odoo over JSON-RPC. Students check transcripts, CGPA, attendance and timetables, register for courses, and apply online for scholarships, hostel, transport and semester freeze.</li>
+      <li>Hardened the gateway for real traffic with JWT authentication, request validation, Redis rate limiting and a caching layer that cuts repeat calls to Odoo; deployed with Gunicorn, systemd and nginx.</li>
+      <li>Built the scholarship system: a ~200-field need-based application with configurable scoring, and donor-funded seats (HEC, CMEEF, FATA) that waive specific fees and settle any shortfall or surplus on the student's fee account automatically.</li>
+      <li>Built HR and payroll: promotions, transfers and disciplinary records, FBR income-tax withholding, allowances, hourly pay for visiting faculty, and payroll entries posted to the general ledger.</li>
+      <li>Built the staff appraisal system: weighted scorecards for teaching, research and administration, approval from self-review through HOD and committee to dean, and access rules so each reviewer sees only their own department.</li>
+      <li>Built 8 PDF and Excel reports for donor claims, fund-utilization audits and annual staff evaluations.</li>
     </ul>
   </div>
 </section>
@@ -88,8 +92,7 @@
     </div>
     <ul>
       <li>Built a self-hosted, privacy-first web analytics platform: a ~1 KB embeddable tracker, an ingestion API with bot filtering and Zod validation, and live dashboards for visitors, pages, referrers, countries and devices.</li>
-      <li>Designed cookieless unique-visitor counting with a daily-rotating salted hash, storing no cookies or IP addresses, so sites using it need no consent banner.</li>
-      <li>Moved analytics aggregation into PostgreSQL functions (time series, breakdowns, live visitors) protected by row-level security, with public read-only share links.</li>
+      <li>Designed cookieless visitor counting with a daily-rotating salted hash (no cookies, no stored IPs, no consent banner), with aggregation in PostgreSQL functions behind row-level security.</li>
     </ul>
   </div>
 
@@ -99,9 +102,7 @@
     </div>
     <ul>
       <li>Built an emergency-contact QR sticker platform: anyone who scans a sticker gets a bilingual (English/Urdu) page with the owner's emergency contacts and a one-tap Call Now button, with no app or signup.</li>
-      <li>Implemented passwordless magic-link login with single-use, 15-minute, SHA-256-hashed tokens and httpOnly JWT sessions; activating a QR requires both a session and ownership.</li>
-      <li>Protected phone numbers from bulk scraping by revealing them only on tap through a tracked API call, with per-IP cooldowns and rate limiting on sensitive routes.</li>
-      <li>Built the order flow for local payments (JazzCash/EasyPaisa, confirmed over WhatsApp): approving an order atomically mints the buyer's QR codes, and admins batch-generate print-ready sticker PDFs.</li>
+      <li>Secured it with single-use, SHA-256-hashed magic-link login and scrape-proof phone numbers revealed only on tap, with per-IP rate limiting; approving a JazzCash/EasyPaisa order atomically mints the buyer's QR codes.</li>
     </ul>
   </div>
 
@@ -110,8 +111,7 @@
       <span><span class="project-title">Lecture2Note</span> | <span class="stack">React, Tailwind CSS, Python, FastAPI</span></span>
     </div>
     <ul>
-      <li>Built an AI study platform that turns lecture audio and video into structured notes, concise summaries and interactive quizzes.</li>
-      <li>Engineered the multi-stage processing pipeline (transcription → notes → summary → quiz) with upload handling and processing states, plus a review UI for studying notes and taking the generated quizzes.</li>
+      <li>Built an AI study platform with a multi-stage pipeline (transcription → notes → summary → quiz) that turns lecture recordings into structured notes and interactive quizzes.</li>
     </ul>
   </div>
 </section>
@@ -120,10 +120,10 @@
   <h2>Technical Skills</h2>
   <div class="skills">
     <p><b>Languages</b>: JavaScript, TypeScript, Python, SQL, HTML, CSS</p>
-    <p><b>Frameworks/Libraries</b>: Next.js, React, Flask, FastAPI, Node.js, Vite, Tailwind CSS, shadcn/ui, Prisma</p>
+    <p><b>Frameworks/Libraries</b>: Odoo 19 (ORM, QWeb), Next.js, React, Flask, FastAPI, Node.js, Vite, Tailwind CSS, shadcn/ui, Prisma</p>
     <p><b>Databases</b>: PostgreSQL (functions, row-level security), Supabase, MongoDB, Redis</p>
-    <p><b>Backend &amp; Deployment</b>: REST APIs, authentication (JWT, magic links), rate limiting, Vercel, Linux (nginx, systemd, Gunicorn)</p>
-    <p><b>Developer Tools</b>: Git, GitHub, VS Code, Figma, Postman, Odoo</p>
+    <p><b>Backend &amp; Deployment</b>: REST APIs, JSON-RPC, authentication (JWT, magic links), rate limiting, Vercel, Linux (nginx, systemd, Gunicorn)</p>
+    <p><b>Developer Tools</b>: Git, GitHub, VS Code, Figma, Postman</p>
   </div>
 </section>
 
