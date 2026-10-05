@@ -10,7 +10,7 @@ import IntroOverlay from "@/components/intro-overlay";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rayankhan.dev"),
+  metadataBase: new URL("https://rayankhan-dev.vercel.app"),
   title: "Rayan Khan, Full-Stack Web Developer",
   description:
     "Portfolio of Rayan Khan, a full-stack developer from Peshawar, Pakistan building modern web experiences with React, Next.js, and Node.js.",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     title: "Rayan Khan, Full-Stack Web Developer",
     description:
       "Full-stack developer building modern web experiences with React, Next.js, and Node.js.",
-    url: "https://rayankhan.dev",
-    siteName: "rayankhan.dev",
+    url: "https://rayankhan-dev.vercel.app",
+    siteName: "rayankhan-dev.vercel.app",
     images: ["/images/profile.jpg"],
     type: "website",
   },

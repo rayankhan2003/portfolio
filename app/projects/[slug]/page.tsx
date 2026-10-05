@@ -22,7 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
   if (!project) return { title: "Project not found" };
-  const url = `https://rayankhan.dev/projects/${project.slug}`;
+  const url = `https://rayankhan-dev.vercel.app/projects/${project.slug}`;
   return {
     title: `${project.title} — Rayan Khan`,
     description: project.shortDescription,
