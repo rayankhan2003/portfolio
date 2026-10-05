@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/admin",
     },
-    sitemap: "https://rayankhan.dev/sitemap.xml",
+    sitemap: "https://rayankhan-dev.vercel.app/sitemap.xml",
   };
 }

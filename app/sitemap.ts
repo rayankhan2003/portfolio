@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPublishedProjects } from "@/lib/projects/data";
 
-const BASE_URL = "https://rayankhan.dev";
+const BASE_URL = "https://rayankhan-dev.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getPublishedProjects();

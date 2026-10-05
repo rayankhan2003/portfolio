@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Projects — Rayan Khan",
   description:
     "All projects by Rayan Khan — full-stack web apps built with Next.js, React, and PostgreSQL.",
-  alternates: { canonical: "https://rayankhan.dev/projects" },
+  alternates: { canonical: "https://rayankhan-dev.vercel.app/projects" },
 };
 
 export default async function ProjectsPage() {

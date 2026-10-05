@@ -388,7 +388,7 @@ export const COMMANDS: Record<string, Command> = {
             <Table
               rows={[
                 ["OS", "Next.js 15 · React 19"],
-                ["Host", "rayankhan.dev"],
+                ["Host", "rayankhan-dev.vercel.app"],
                 ["Shell", "portfolio-sh 1.0"],
                 ["Uptime", `${uptime()} (this visit)`],
                 ["Location", "Peshawar, PK"],
